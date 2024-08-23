@@ -7,14 +7,38 @@
     <title>Resume Analyzer</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
             padding: 20px;
         }
         
-        #resumeUpload {
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .file-input-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        input[type="file"] {
             display: none;
         }
         
@@ -22,8 +46,60 @@
             background-color: #4CAF50;
             color: white;
             padding: 12px 20px;
-            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        label:hover {
+            background-color: #45a049;
+        }
+        
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        input[type="submit"]:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        h2 {
+            color: #333;
+            margin-top: 40px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        li:last-child {
+            border-bottom: none;
         }
         
         #results,
@@ -37,8 +113,11 @@
 <body>
     <h1>Resume Analyzer</h1>
     <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="file">
-        <input type="submit" value="submit">
+        <div class="file-input-wrapper">
+            <input type="file" name="file" id="file" accept="application/pdf">
+            <label for="file">Choose PDF Resume</label>
+        </div>
+        <input type="submit" value="Analyze Resume" id="submitBtn" disabled>
     </form>
     <h2>Extracted Details</h2>
     <ul>
@@ -46,6 +125,22 @@
         <li>{{ detail }}</li>
         {% endfor %}
     </ul>
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const submitBtn = document.getElementById('submitBtn');
+
+        fileInput.addEventListener('change', function() {
+            const file = fileInput.files[0];
+
+            if (file && file.type === 'application/pdf') {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+                alert('Please upload a valid PDF file.');
+            }
+        });
+    </script>
 </body>
 
 </html>
