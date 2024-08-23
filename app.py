@@ -1,6 +1,7 @@
 import os
 import re
 import json 
+import csv
 from flask import Flask, request, jsonify,render_template
 import fitz 
 import google.generativeai as genai
@@ -27,21 +28,39 @@ def extract_text_from_pdf():
             page = pdf_reader.pages[page_num]
             text += page.extract_text()
     return text
+def add_interviewee_to_csv(interviewee_data, filename="interviewee.csv"):
+    header = ["serial no.", "name", "Qualifications", "Research_field", "total_experience_years", "Relevant_Department"]
+    next_serial_no = 1
+    existing_data = set()
 
+    if os.path.exists(filename):
+        with open(filename, 'r', newline='') as csvfile:
+            reader = csv.reader(csvfile)
+            next(reader, None)  # Skip header row
+            for row in reader:
+                next_serial_no += 1
+                existing_data.add(tuple(row[1:]))  # Store data as tuples (excluding serial no.)
+
+    # Check if interviewee data already exists
+    if tuple(interviewee_data) in existing_data:
+        print("Data already exists. Skipping...")
+        return
+
+    # Append new data if not a duplicate
+    with open(filename, 'a', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        if next_serial_no == 1:  # Add header if file is new
+            writer.writerow(header)
+        interviewee_data.insert(0, next_serial_no)
+        writer.writerow(interviewee_data)
 def extract_details(text):
-    # DRDO_Department=["Advanced Systems Laboratory (ASL)","Aerial Delivery Research and Development Establishment (ADRDE)","Aeronautical Development Establishment (ADE)","Armament Research & Development Establishment (ARDE)",
-    #                 "Centre For Air Borne System (CABS)","Centre for Artificial Intelligence & Robotics (CAIR)","Centre for Fire, Explosive and Environment Safety (CFEES)","Combat Vehicles Research & Development Establishment (CVRDE)","Defence Bio-Engineering & Electro Medical Laboratory (DEBEL)",
-    #                 "Defence Electronics Application Laboratory (DEAL)","Defence Electronics Research Laboratory (DLRL)","Defence Food Research Laboratory (DFRL)","Defence Geoinformatics Research Establishment (DGRE)","Defence Institute of High Altitude Research (DIHAR)","Defence Institute of Physiology & Allied Sciences (DIPAS)",
-    #                 "Defence Institute of Psychological Research (DIPR)","Defence Laboratory Jodhpur (DLJ)","Defence Materials and Stores Research and Development Establishment (DMSRDE)","Defence Metallurgical Research Laboratory (DMRL)","Defence Research & Development Laboratory (DRDL)","Defence Research Development Establishment (DRDE)","Defence Research Laboratory (DRL)","Defence Scientific Information & Documentation Centre (DESIDOC)","Defense young Scientist Laboratory - Artificial Intelligence (DYSL-AI)","DRDO Young Scientist Laboratory (DYSL-AT)",
-    #                 "DRDO Young Scientist Laboratory (DYSL-CT)","DRDO Young Scientist Laboratory (DYSL-QT)","DRDO Young Scientist Laboratory (DYSL-SM)","Electronics & Radar Development Establishment (LRDE)","Gas Turbine Research Establishment (GTRE)","High Energy Materials Research Laboratory (HEMRL)","Institute for Systems Studies & Analyses (ISSA)","Institute of Nuclear Medicine & Allied Sciences (INMAS)",
-    #                 "Institute of Technology Management (ITM)","Instruments Research & Development Establishment (IRDE)","Integrated Test Range (ITR)","Naval Materials Research Laboratory (NMRL)","Naval Physical & Oceanographic Laboratory (NPOL)","Naval Science & Technological Laboratory (NSTL)","Proof & Experimental Establishment (PXE)","Research & Development Establishment (Engrs.)","Research Centre Imarat (RCI)","Scientific Analysis Group (SAG)","Solid State Physics Laboratory (SSPL)","Terminal Ballistics Research Laboratory (TBRL)","Vehicles Research and Development Establishment (VRDE)"]
     prompt = """
     You are a helpful AI assistant. Your task is to extract details from the provided resume text. Respond in the following format:
     ```json
     [
         "name", 
         "Qualifications", 
-        "What field Reseach Papers are on", 
+        "Research_field", 
         "total_experience_years", 
         "Relevant_Department" 
     ]
@@ -49,6 +68,8 @@ def extract_details(text):
     Where:
     -  If the information cannot be found, use "NA".
     -  "total_experience_years" should be an integer representing the total years of experience. If it's not mentioned, use "NA".
+    - "Qualification" should be the highest qualification for example if a person has done BTech, Mtech and PHD then store word PHD only.
+    -  "Research_field" is where you will read the mulitiple topics of reaserch paper and store overall 1 field in which his research papers are for.
     - "Relevant_Department" should be from the the various departments under Defence Research and Development Organisation Laboratory and Establishments of INDIA, select the one best for the resume.If none suitable , use "NA"
     Resume Text:
     ```
@@ -85,9 +106,10 @@ def index():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         data=extract_text_from_pdf()
-        print(extract_details(data))
-        print(extract_text_from_pdf())
-        return render_template('index.html', details=extract_details(data))
+        details=extract_details(data)
+        print(details)
+        add_interviewee_to_csv(details)
+        return render_template('index.html', details=details)
     return render_template('index.html')
 
 if __name__ == '__main__':

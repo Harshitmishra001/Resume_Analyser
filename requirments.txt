@@ -4,3 +4,6 @@ google-generativeai
 python-dotenv
 flask-cors
 PyPDF2
+cors
+uuid
+csv
