@@ -28,14 +28,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 600px;
         }
         
-        .file-input-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .file-input-wrapper,
+        .jd-input-wrapper {
             margin-bottom: 20px;
+            text-align: left;
         }
         
         input[type="file"] {
@@ -54,6 +53,15 @@
         
         label:hover {
             background-color: #45a049;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 14px;
         }
         
         input[type="submit"] {
@@ -80,13 +88,15 @@
         h2 {
             color: #333;
             margin-top: 40px;
+            width: 100%;
+            max-width: 600px;
         }
         
         ul {
             list-style: none;
             padding: 0;
             width: 100%;
-            max-width: 400px;
+            max-width: 600px;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -102,10 +112,23 @@
             border-bottom: none;
         }
         
-        #results,
-        #error {
+        .feedback {
             margin-top: 20px;
-            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .feedback p {
+            margin: 10px 0;
+        }
+        
+        .feedback ul {
+            list-style: disc;
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -114,17 +137,37 @@
     <h1>Resume Analyzer</h1>
     <form action="/" method="post" enctype="multipart/form-data">
         <div class="file-input-wrapper">
-            <input type="file" name="file" id="file" accept="application/pdf">
+            <input type="file" name="file" id="file" accept="application/pdf" required>
             <label for="file">Choose PDF Resume</label>
         </div>
-        <input type="submit" value="Analyze Resume" id="submitBtn" disabled>
+        <div class="jd-input-wrapper">
+            <label for="job_description">Job Description:</label><br>
+            <textarea id="job_description" name="job_description" rows="6" placeholder="Paste the job description here..." required></textarea>
+        </div>
+        <input type="submit" value="Analyze Resume">
     </form>
+    
+    {% if details %}
     <h2>Extracted Details</h2>
     <ul>
         {% for detail in details %}
         <li>{{ detail }}</li>
         {% endfor %}
     </ul>
+    {% endif %}
+
+    {% if feedback %}
+    <h2>Match Assessment</h2>
+    <div class="feedback">
+        <p><strong>Match Score:</strong> {{ feedback.match_score }}%</p>
+        <h3>Areas to Improve:</h3>
+        <ul>
+            {% for gap in feedback.gaps %}
+                <li>{{ gap }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 
     <script>
         const fileInput = document.getElementById('file');

@@ -1,115 +1,157 @@
 import os
+import json
 import re
-import json 
-import csv
-from flask import Flask, request, jsonify,render_template
-import fitz 
+import fitz  # PyMuPDF for better PDF text extraction
+from flask import Flask, request, jsonify, render_template, redirect
 import google.generativeai as genai
 from dotenv import load_dotenv
-from flask_cors import CORS 
-import uuid
-import PyPDF2
+from flask_cors import CORS
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import spacy
 
-load_dotenv()  
+# Load environment variables
+load_dotenv()
 genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
-model = genai.GenerativeModel("gemini-1.5-pro") 
+model = genai.GenerativeModel("gemini-1.5-pro")
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
-def extract_text_from_pdf():
-    file_path=r'uploads\data.pdf'
-    with open(file_path, 'rb') as pdf_file:
-        pdf_reader = PyPDF2.PdfReader(pdf_file)
-        num_pages = len(pdf_reader.pages)
-        text = ""
-        for page_num in range(num_pages):
-            page = pdf_reader.pages[page_num]
-            text += page.extract_text()
-    return text
-def add_interviewee_to_csv(interviewee_data, filename="interviewee.csv"):
-    header = ["serial no.", "name", "Qualifications", "Research_field", "total_experience_years", "Relevant_Department"]
-    next_serial_no = 1
-    existing_data = set()
 
-    if os.path.exists(filename):
-        with open(filename, 'r', newline='') as csvfile:
-            reader = csv.reader(csvfile)
-            next(reader, None)  # Skip header row
-            for row in reader:
-                next_serial_no += 1
-                existing_data.add(tuple(row[1:]))  # Store data as tuples (excluding serial no.)
+# Initialize Sentence Transformer and spaCy models
+sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
+nlp = spacy.load('en_core_web_sm')
 
-    # Check if interviewee data already exists
-    if tuple(interviewee_data) in existing_data:
-        print("Data already exists. Skipping...")
-        return
+# Ensure upload folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
-    # Append new data if not a duplicate
-    with open(filename, 'a', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        if next_serial_no == 1:  # Add header if file is new
-            writer.writerow(header)
-        interviewee_data.insert(0, next_serial_no)
-        writer.writerow(interviewee_data)
-def extract_details(text):
-    prompt = """
-    You are a helpful AI assistant. Your task is to extract details from the provided resume text. Respond in the following format:
-    ```json
-    [
-        "name", 
-        "Qualifications", 
-        "Research_field", 
-        "total_experience_years", 
-        "Relevant_Department" 
-    ]
-    ```
-    Where:
-    -  If the information cannot be found, use "NA".
-    -  "total_experience_years" should be an integer representing the total years of experience. If it's not mentioned, use "NA".
-    - "Qualification" should be the highest qualification for example if a person has done BTech, Mtech and PHD then store word PHD only.
-    -  "Research_field" is where you will read the mulitiple topics of reaserch paper and store overall 1 field in which his research papers are for.
-    - "Relevant_Department" should be from the the various departments under Defence Research and Development Organisation Laboratory and Establishments of INDIA, select the one best for the resume.If none suitable , use "NA"
-    Resume Text:
-    ```
-    {text}
-    ```
+# Load skill dataset from JSON
+def load_skills(file_path="skills.json"):
+    """Load the skill dataset from a JSON file."""
+    with open(file_path, "r") as file:
+        data = json.load(file)
+    return set(skill.lower() for skill in data.get("skills", []))
 
+SKILLS = load_skills()
+
+def extract_text_from_pdf(file_path):
+    """Extract text from a PDF file using fitz (PyMuPDF)."""
+    doc = fitz.open(file_path)
+    text = ""
+    for page in doc:
+        text += page.get_text("text")
+    return text.strip()
+
+def parse_job_description(job_description):
+    """Extract required skills and other details from the job description."""
+    doc = nlp(job_description)
+    required_skills = []
+
+    # Match skills from the loaded dataset
+    for token in doc:
+        if token.text.lower() in SKILLS:
+            required_skills.append(token.text.lower())
+
+    qualifications = []
+    responsibilities = []
+
+    for sent in doc.sents:
+        if any(keyword in sent.text.lower() for keyword in ['qualification', 'degree', 'education']):
+            qualifications.append(sent.text.strip())
+        if any(keyword in sent.text.lower() for keyword in ['responsibility', 'responsible', 'task']):
+            responsibilities.append(sent.text.strip())
+
+    return {
+        'required_skills': ', '.join(set(required_skills)),
+        'qualifications': ' '.join(qualifications),
+        'responsibilities': ' '.join(responsibilities)
+    }
+
+def extract_details_with_ai(text):
+    """Extract key details from resume text using Generative AI."""
+    prompt = f"""
+    Extract details from the following resume text. Respond in JSON format with these fields:
+    - "name"
+    - "highest_qualification"
+    - "skills"
+    - "total_experience_years"
+    - "projects"
+    If a field is missing, return "NA".
+
+    Resume Text: {text}
     """
     try:
-        response = model.generate_content([prompt.format(text=text)])
-        extracted_data = response.text
-
-        try:
-            actual_list = json.loads(extracted_data)
-        except json.JSONDecodeError:
-            pattern = r"\[(.*?)\]" 
-            match = re.search(pattern, extracted_data, re.DOTALL)
-            if match:
-                items = [item.strip().replace('"', '') for item in match.group(1).split(",")]
-                actual_list = [int(item) if item.isdigit() else item for item in items]
-            else:
-                actual_list = ["Error: Unable to extract data"]
-        return actual_list 
+        response = model.generate_content([prompt])
+        if response and response.text.strip():
+            return json.loads(response.text.strip())
+        else:
+            raise ValueError("Empty response from Generative AI")
     except Exception as e:
-        print("Error extracting details:", e)
-        return None
+        print("Error extracting details with AI:", e)
+        return {
+            "error": "The AI service is currently busy or unavailable. Please try again later."
+        }
 
+def compute_similarity(resume_text, jd_text):
+    """Compute semantic similarity between resume and job description."""
+    resume_combined = ' '.join(resume_text.values())
+    jd_combined = ' '.join(jd_text.values())
 
+    resume_embedding = sentence_model.encode(resume_combined)
+    jd_embedding = sentence_model.encode(jd_combined)
 
-@app.route('/',methods=['GET','POST'])
+    similarity = cosine_similarity([resume_embedding], [jd_embedding])[0][0]
+    return similarity * 100  # Convert to percentage
+
+def identify_gaps(resume_text, jd_text):
+    """Identify gaps between resume and job description."""
+    resume_skills = set(resume_text.get('skills', '').lower().split(', '))
+    jd_skills = set(jd_text.get('required_skills', '').lower().split(', '))
+
+    missing_skills = jd_skills - resume_skills
+    return list(missing_skills)
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method=='POST':
+    if request.method == 'POST':
+        # Handle resume upload
+        if 'file' not in request.files:
+            return redirect(request.url)
         file = request.files['file']
-        filename = "data.pdf"
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
-        data=extract_text_from_pdf()
-        details=extract_details(data)
-        print(details)
-        add_interviewee_to_csv(details)
-        return render_template('index.html', details=details)
+        if file.filename == '':
+            return redirect(request.url)
+        if file and file.filename.lower().endswith('.pdf'):
+            filename = "data.pdf"
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+
+            # Extract text from resume
+            resume_text_raw = extract_text_from_pdf(filepath)
+            resume_details = extract_details_with_ai(resume_text_raw)
+
+            # Handle job description input
+            job_description = request.form.get('job_description', '')
+            if not job_description:
+                feedback = {
+                    'match_score': "NA",
+                    'gaps': ["No job description provided."]
+                }
+            else:
+                parsed_jd = parse_job_description(job_description)
+                match_score = compute_similarity(resume_details, parsed_jd)
+                gaps = identify_gaps(resume_details, parsed_jd)
+                feedback = {
+                    'match_score': round(match_score, 2),
+                    'gaps': gaps if gaps else ["No gaps identified. Your resume matches the job description well!"]
+                }
+
+            # Clean up uploaded file
+            os.remove(filepath)
+
+            return render_template('index.html', details=resume_details, feedback=feedback)
     return render_template('index.html')
 
 if __name__ == '__main__':
