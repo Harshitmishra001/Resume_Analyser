@@ -43,8 +43,8 @@ Installation
 
 Step 1: Clone the Repository
 
-git clone https://github.com/your-repo/resume-job-matcher.git
-cd resume-job-matcher
+git clone https://github.com/Harshitmishra001/Resume_Analyser.git
+cd  Resume_Analyser
 
 Step 2: Install Dependencies
 
