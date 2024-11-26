@@ -47,7 +47,12 @@ def suggest_skills(resume_skills, job_skills):
     if not missing_skills:
         return "No additional skills are needed! Your resume matches the job requirements well."
     return f"Consider adding these skills to your resume: {', '.join(missing_skills)}"
-
+# Function to suggest remove skills
+def suggest_reskills(resume_skills, job_skills):
+    missing_skills = set(resume_skills) - set(job_skills)  
+    if not missing_skills:
+        return "No additional skills are needed! Your resume matches the job requirements well."
+    return f"Consider removing these skills from your resume: {', '.join(missing_skills)}"
 # Function to visualize skill match
 def plot_skill_match(resume_skills, job_skills):
     common_skills = set(resume_skills).intersection(set(job_skills))
@@ -102,7 +107,8 @@ if uploaded_file and job_description:
     # Skill suggestions
     with st.spinner("Generating skill suggestions..."):
         additional_skills = suggest_skills(resume_skills, job_skills)
-
+    with st.spinner("Generating skill suggestions..."):
+        additional_remskills = suggest_reskills(resume_skills, job_skills)
     # Display results
     st.subheader("Results")
     st.write(f"**Match Percentage:** {match_percentage}%")
@@ -112,7 +118,8 @@ if uploaded_file and job_description:
     st.subheader("Suggestions")
     st.write("**Additional Skills to Add:**")
     st.write(additional_skills)
-
+    st.write("**Additional Skills to remove:**")
+    st.write(additional_remskills)
     # Visualization
     st.subheader("Skill Match Visualization")
     plot_skill_match(resume_skills, job_skills)
