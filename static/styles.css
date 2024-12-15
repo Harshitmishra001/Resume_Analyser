@@ -1,0 +1,462 @@
+/* General Reset */
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Fira Code', monospace;
+    scroll-behavior: smooth;
+    background: url('Screenshot 2024-12-10 131656.png') no-repeat center center fixed;
+    /* Add background image */
+    background-size: cover;
+    /* Ensure image covers the entire viewport */
+    background-color: #f4f4f4;
+    /* Fallback color for slow image loading */
+}
+
+
+/* Header Section */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(#4A90E2, #E94E77);
+    /* Gradient with primary and secondary colors */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #000000;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    /* Contrast text */
+}
+
+.header img {
+    width: 280px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Navigation Buttons */
+
+.navigation-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.button-container button {
+    background-color: #4A90E2;
+    /* Primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-container button:hover {
+    background-color: #E94E77;
+    /* Secondary color on hover */
+    transform: scale(1.05);
+}
+
+.button-container button:active {
+    background-color: #F5A623;
+    /* Accent color on click */
+}
+
+
+/* Content Sections */
+
+.content-section {
+    display: none;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #FFFFFF;
+    /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px #E94E77(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    color: #E94E77;
+}
+
+.content-section button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.content-section button:hover {
+    background-color: #F5A623;
+}
+
+
+/* Reviews Section */
+
+.reviews-section {
+    margin-top: 30px;
+}
+
+.reviews-section h2 {
+    font-size: 2rem;
+    color: #E94E77;
+}
+
+#writeReviewBtn {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background-color: #4A90E2;
+    color: rgb(122, 13, 13);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#writeReviewBtn:hover {
+    background-color: #020202;
+}
+
+
+/* Scrollable Reviews */
+
+.scrollable-reviews {
+    max-height: 200px;
+    overflow-y: scroll;
+    margin-top: 20px;
+    background-color: #020202;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #5f1111;
+}
+
+.review {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #E94E77;
+    border-radius: 5px;
+    border: 1px solid #E94E77;
+}
+
+
+/* Sponsors Section */
+
+.sponsors-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.sponsors-section h3 {
+    font-size: 1.8rem;
+    color: #E94E77;
+    margin-bottom: 20px;
+}
+
+.sponsors-container img {
+    width: 150px;
+    height: auto;
+    border: 1px solid #4A90E2;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.sponsors-container img:hover {
+    transform: scale(1.1);
+}
+
+
+/* About Us Section */
+
+.about-us-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 2%;
+    padding: 30px;
+}
+
+.column-box {
+    width: 45%;
+    background-color: #E94E77;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px #E94E77(0, 0, 0, 0.1);
+}
+
+.column-box img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.column-box h3 {
+    font-size: 1.5rem;
+    margin-top: 15px;
+    color: #000000;
+}
+
+.column-box p {
+    font-size: 1rem;
+    color: #000000;
+}
+
+
+/* Chat Container */
+
+.chat-container {
+    position: absolute;
+    top: 100;
+    /* Initially positioned at the top */
+    left: 80%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    /* Smooth movement */
+    animation: idle 2s infinite alternate;
+    /* Subtle idle animation */
+}
+
+
+/* Idle Animation */
+
+@keyframes idle {
+    0% {
+        transform: translate(-50%, -50%) translateY(-5px);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(5px);
+    }
+}
+
+
+/* Animal Chatbot (Cat Design) */
+
+.animal-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: #ffe5b4;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.ear {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background: #ffe5b4;
+    border-radius: 50%;
+    top: -25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.ear-left {
+    left: -15px;
+    transform: rotate(-20deg);
+}
+
+.ear-right {
+    right: -15px;
+    transform: rotate(20deg);
+}
+
+.face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.eyes {
+    position: absolute;
+    top: 30px;
+    left: 25px;
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.eye {
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.mouth {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 10px;
+    background: #000;
+    border-radius: 0 0 50px 50px;
+}
+
+.whiskers {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.whisker {
+    width: 60px;
+    height: 300px;
+    background: #000;
+}
+
+.whisker-left {
+    transform: rotate(15deg);
+    margin-left: -70px;
+}
+
+.whisker-right {
+    transform: rotate(-15deg);
+    margin-right: -70px;
+}
+
+
+/* Chat Bubble */
+
+.chat-bubble {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    color: #333;
+}
+
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #fff;
+}
+
+
+/* User Input Section */
+
+.user-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 200px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #4A90E2;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #E94E77;
+}
+
+
+/* Resume Upload Section */
+
+.resume-upload {
+    padding: 40px;
+    background: linear-gradient(to bottom, #4A90E2, #E94E77);
+    text-align: center;
+    border-radius: 10px;
+    margin: 50px auto;
+    width: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.resume-upload button {
+    background-color: #E94E77;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.resume-upload button:hover {
+    background-color: #F5A623;
+}
+
+
+/* Contact Us Section */
+
+.contact-us {
+    background-color: #4A90E2;
+    padding: 40px 20px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.contact-us h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.contact-us a {
+    color: #F5A623;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-us a:hover {
+    text-decoration: underline;
+}

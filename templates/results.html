@@ -1,0 +1,50 @@
+<!-- templates/results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Skill Match</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Skill Match Results</h1>
+
+        <!-- Display match percentage -->
+        <p><strong>Match Percentage:</strong> {{ match_percentage }}%</p>
+
+        <!-- Display resume skills -->
+        <h2>Resume Skills</h2>
+        <ul>
+            {% for skill in resume_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Display job skills -->
+        <h2>Job Skills</h2>
+        <ul>
+            {% for skill in job_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Display additional skills suggestions -->
+        <h2>Additional Skills Suggestions</h2>
+        <p>{{ additional_skills }}</p>
+
+        <!-- Display skills to remove suggestions -->
+        <h2>Skills to Remove</h2>
+        <p>{{ additional_remskills }}</p>
+
+        <!-- Display skill match visualization -->
+        <h2>Skill Match Overview</h2>
+        <img src="data:image/png;base64,{{ plot_image | safe }}" alt="Skill Match Overview">
+    </div>
+</body>
+
+</html>

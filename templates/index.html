@@ -4,207 +4,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Analyzer</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .file-input-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        label {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        label:hover {
-            background-color: #45a049;
-        }
-
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        input[type="submit"]:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        h2 {
-            color: #333;
-            margin-top: 40px;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-            max-width: 600px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        li:last-child {
-            border-bottom: none;
-        }
-
-        #results,
-        #error {
-            margin-top: 20px;
-            display: none;
-        }
-
-        .results-wrapper {
-            margin-top: 40px;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-        }
-
-        .result-title {
-            color: #333;
-        }
-
-        .match-percentage {
-            font-size: 20px;
-            font-weight: bold;
-            color: #4CAF50;
-        }
-
-        .missing-skills {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .missing-skills ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .missing-skills li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .missing-skills li:last-child {
-            border-bottom: none;
-        }
-    </style>
+    <title>Resume Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
-    <h1>Resume Analyzer</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <div class="file-input-wrapper">
-            <input type="file" name="file" id="file" accept="application/pdf" required>
-            <input type="file" name="file" id="file" accept="application/pdf" required>
-            <label for="file">Choose PDF Resume</label>
+    <!-- Header Section -->
+    <header class="header">
+        <div>
+            <h1>Effortlessly Create Stunning Resumes</h1>
+            <p class="intro-text">
+                The ATS Resume Website is an intuitive, user-friendly platform designed to help individuals create stunning, professional resumes effortlessly. By leveraging AI and optimized design, the platform ensures each resume is tailored for the modern job market,
+                increasing your chances of passing through Applicant Tracking Systems (ATS) successfully.
+            </p>
         </div>
-        <textarea name="job_description" id="job_description" rows="5" cols="40" placeholder="Paste job description here..." required></textarea><br><br>
-        <input type="submit" value="Analyze Resume" id="submitBtn" disabled>
-    </form>
-
-    {% if details %}
-        <div class="results-wrapper">
-            <h2 class="result-title">Extracted Details</h2>
-            <ul>
-                {% for detail in details %}
-                    <li>{{ detail }}</li>
-                {% endfor %}
-            </ul>
-
-            <h3 class="result-title">Match Percentage: <span class="match-percentage">{{ match_percentage }}%</span></h3>
-
-            {% if missing_skills %}
-                <div class="missing-skills">
-                    <h4>Missing Skills:</h4>
-                    <ul>
-                        {% for skill in missing_skills %}
-                            <li>{{ skill }}</li>
-                        {% endfor %}
-                    </ul>
+        <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 112104.png') }}" alt="Illustration showcasing resume generation" />
+        <!-- Rightmost Image -->
+    </header>
+    <!-- Navigation Buttons Section -->
+    <section class="navigation-buttons">
+        <div class="button-container">
+            <button id="resourcesButton">Resources</button>
+            <button id="faqsButton">FAQs</button>
+            <button id="coverLettersButton">Cover Letters</button>
+            <button id="resumeTemplatesButton">Resume Templates</button>
+            <button id="resumeExamplesButton">Resume Examples</button>
+        </div>
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <h2>Reviews</h2>
+            <!-- Review Button to Open Review Form -->
+            <button id="writeReviewBtn">Write a Review</button>
+            <div id="reviewsContainer" class="scrollable-reviews">
+                <!-- Example reviews (these will be added dynamically) -->
+                <div class="review">
+                    <p><strong>John Doe:</strong> "Great platform! It helped me create a perfect resume!"</p>
                 </div>
-            {% else %}
-                <p>No missing skills!</p>
-            {% endif %}
+                <div class="review">
+                    <p><strong>Jane Smith:</strong> "Easy to use and effective. Highly recommend!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Review Form (Hidden by Default) -->
+        <section id="reviewFormSection" class="hidden">
+            <h3>Write a Review</h3>
+            <textarea id="reviewInput" placeholder="Write your review here..." rows="4" cols="50"></textarea><br>
+            <button id="submitReviewBtn">Submit Review</button>
+        </section>
+
+    </section>
+    <!-- Sections for content -->
+    <section id="applyTemplateSection" class="content-section hidden">
+        <h2>Apply Template</h2>
+        <p>Select and apply a professional resume template:</p>
+        <!-- Example templates listed -->
+        <div class="template-options">
+            <button>Template 1</button>
+            <button>Template 2</button>
+            <button>Template 3</button>
         </div>
-    {% endif %}
+    </section>
+    <section id="resourcesSection" class="content-section hidden">
+        <h2>Resources</h2>
+        <p>Here are some valuable resources for creating your resume:</p>
+        <ul>
+            <li><a href="#">Resume Writing Tips</a></li>
+            <li><a href="#">How to Tailor Your Resume for a Job</a></li>
+            <li><a href="#">Understanding Applicant Tracking Systems (ATS)</a></li>
+        </ul>
+    </section>
 
-    <script>
-        const fileInput = document.getElementById('file');
-        const submitBtn = document.getElementById('submitBtn');
+    <section id="templatesSection" class="content-section hidden">
+        <h2>Resume Templates</h2>
+        <p>Choose from a variety of professionally designed resume templates:</p>
+        <!-- Example templates list -->
+        <div class="template-gallery">
+            <button>Template 1</button>
+            <button>Template 2</button>
+            <button>Template 3</button>
+        </div>
+    </section>
 
-        fileInput.addEventListener('change', function() {
-            const file = fileInput.files[0];
+    <section id="coverLettersSection" class="content-section hidden">
+        <h2>Resume Covers</h2>
+        <p>Select a cover letter template to complement your resume:</p>
+        <!-- Example cover letters -->
+        <div class="cover-letter-gallery">
+            <button>Cover Letter 1</button>
+            <button>Cover Letter 2</button>
+            <button>Cover Letter 3</button>
+        </div>
+    </section>
 
-            if (file && file.type === 'application/pdf') {
-                submitBtn.disabled = false;
-            } else {
-                submitBtn.disabled = true;
-                alert('Please upload a valid PDF file.');
-            }
-        });
-    </script>
+
+    <!-- H2 Section -->
+    <section class="h2-section">
+        <h2>
+            <center><br>Let's Get Started</center>
+        </h2>
+
+        <!-- Review Section -->
+        <div class="review-section">
+            <h3>What Our Users Say</h3>
+            <div class="reviews-container">
+                <div class="review">
+                    <p>"This platform made creating resumes so easy! Highly recommended!"</p>
+                    <span>- John Doe</span>
+                </div>
+                <div class="review">
+                    <p>"Thanks to this site, I landed my dream job. The AI recommendations are spot on!"</p>
+                    <span>- Jane Smith</span>
+                </div>
+                <div class="review">
+                    <p>"The templates are professional and ATS-friendly. A must-try for job seekers!"</p>
+                    <span>- Alex Johnson</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sponsors Section -->
+        <div class="sponsors-section">
+            <h3>Our Trusted Sponsors</h3>
+            <div class="sponsors-container">
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203010.png') }}" alt="Brand 1 Logo" />
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203036.png') }}" alt="Brand 2 Logo" />
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203044.png') }}" alt="Brand 3 Logo" />
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203051.png') }}" alt="Brand 4 Logo" />
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us">
+        <!-- Container for the Column Boxes -->
+        <div class="about-us-container">
+            <!-- First Column Box -->
+            <div class="column-box">
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 154321.png') }}" alt="AI-Powered Resume Creation" />
+                <h3>AI-Powered Resume Creation</h3>
+                <p>Our platform uses intelligent algorithms to suggest optimal formatting, content, and keywords tailored to specific job descriptions, ensuring ATS-friendly resumes.</p>
+            </div>
+
+            <!-- Second Column Box -->
+            <div class="column-box">
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 151017.png') }}" alt="Customization Options" />
+                <h3>Customization Options</h3>
+                <p>Choose from a variety of templates, fonts, and color schemes, ensuring each resume stands out while remaining professional and ATS-compatible.</p>
+            </div>
+        </div>
+
+        <!-- Container for Image and Content Boxes -->
+        <div class="image-text-container">
+            <!-- Box for Image 1 and Content -->
+            <div class="image-text-box">
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 154923.png') }}" alt="Easy-to-Use Interface" />
+                <h3 style="color: deeppink;"> Easy to Use Interface</h3>
+                <p style="color:deeppink;">Our intuitive solutions ensure an ATS-friendly and beautifully designed resume. Get started today to boost your job prospects!</p>
+            </div>
+
+            <!-- Box for Image 2 and Content -->
+            <div class="image-text-box">
+                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 154923.png') }}" alt="Our Expertise" />
+                <h3 style="color:deeppink;">Our Expertise</h3>
+                <p style="color:deeppink;">Our team of experts tailors resumes to meet job market demands, ensuring you stand out in the competitive job search landscape.</p>
+            </div>
+        </div>
+    </section>
+    <div class="chat-container">
+        <!-- Animal Chatbot -->
+        <div class="animal-container">
+            <div class="cat-face">
+                <div class="ear ear-left"></div>
+                <div class="ear ear-right"></div>
+                <div class="face">
+                    <div class="eyes">
+                        <div class="eye eye-left"></div>
+                        <div class="eye eye-right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                    <div class="whiskers">
+                        <div class="whisker whisker-left"></div>
+                        <div class="whisker whisker-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Bubble -->
+        <div class="chat-bubble">
+            <p id="chat-response">Hello! I’m your friendly talking cat. How can I help you today?</p>
+        </div>
+
+        <!-- User Input -->
+        <div class="user-input">
+            <input type="text" id="userMessage" placeholder="Type your message here..." />
+            <button id="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <!-- Resume Upload Section -->
+    <!-- Resume Upload Section -->
+    <section class="resume-upload">
+        <h2>Generate Your Resume Instantly</h2>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="resumeFile" name="resumeFile" accept=".pdf" required />
+            <button type="submit">Upload & Generate</button>
+        </form>
+        <div id="resumeOutput">
+            <!-- AI-generated resume details will appear here -->
+        </div>
+    </section>
+
+
+    <!-- Contact Us Section -->
+    <section class="contact-us">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:support@resumegenerator.com">support@resumegenerator.com</a></p>
+        <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
+    </section>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 
 </html>
