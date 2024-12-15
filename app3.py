@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
+import io
+
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
@@ -103,7 +105,7 @@ if not os.path.exists(UPLOAD_FOLDER):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        uploaded_file = request.files['resume']
+        uploaded_file = request.files['resumeFile']
         job_description = request.form['job_description']
         
         if uploaded_file and job_description:

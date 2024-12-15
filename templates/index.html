@@ -207,9 +207,10 @@
     <!-- Resume Upload Section -->
     <section class="resume-upload">
         <h2>Generate Your Resume Instantly</h2>
-        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
             <input type="file" id="resumeFile" name="resumeFile" accept=".pdf" required />
             <button type="submit">Upload & Generate</button>
+            <input type="text" name="job_description" required />
         </form>
         <div id="resumeOutput">
             <!-- AI-generated resume details will appear here -->
