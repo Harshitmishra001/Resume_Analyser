@@ -7,7 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results - Skill Match</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='design.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <!-- Add favicon -->
 </head>
 
 <body>
@@ -43,7 +45,8 @@
 
         <!-- Display skill match visualization -->
         <h2>Skill Match Overview</h2>
-        <img src="data:image/png;base64,{{ plot_image | safe }}" alt="Skill Match Overview">
+        <img src="data:image/png;base64,{{ plot_image | safe }}" alt="Skill Match Overview Visualization">
+        <!-- Improved alt text -->
     </div>
 </body>
 

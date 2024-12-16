@@ -18,7 +18,7 @@
                 increasing your chances of passing through Applicant Tracking Systems (ATS) successfully.
             </p>
         </div>
-        <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 112104.png') }}" alt="Illustration showcasing resume generation" />
+        <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 112104.png') }}" alt="Illustration showcasing resume generation" />
         <!-- Rightmost Image -->
     </header>
     <!-- Navigation Buttons Section -->
@@ -127,10 +127,10 @@
         <div class="sponsors-section">
             <h3>Our Trusted Sponsors</h3>
             <div class="sponsors-container">
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203010.png') }}" alt="Brand 1 Logo" />
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203036.png') }}" alt="Brand 2 Logo" />
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203044.png') }}" alt="Brand 3 Logo" />
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-09 203051.png') }}" alt="Brand 4 Logo" />
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-09 203010.png') }}" alt="Brand 1 Logo" />
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-09 203036.png') }}" alt="Brand 2 Logo" />
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-09 203044.png') }}" alt="Brand 3 Logo" />
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-09 203051.png') }}" alt="Brand 4 Logo" />
             </div>
         </div>
     </section>
@@ -141,14 +141,14 @@
         <div class="about-us-container">
             <!-- First Column Box -->
             <div class="column-box">
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 154321.png') }}" alt="AI-Powered Resume Creation" />
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 154321.png') }}" alt="AI-Powered Resume Creation" />
                 <h3>AI-Powered Resume Creation</h3>
                 <p>Our platform uses intelligent algorithms to suggest optimal formatting, content, and keywords tailored to specific job descriptions, ensuring ATS-friendly resumes.</p>
             </div>
 
             <!-- Second Column Box -->
             <div class="column-box">
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 151017.png') }}" alt="Customization Options" />
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 151017.png') }}" alt="Customization Options" />
                 <h3>Customization Options</h3>
                 <p>Choose from a variety of templates, fonts, and color schemes, ensuring each resume stands out while remaining professional and ATS-compatible.</p>
             </div>
@@ -158,16 +158,16 @@
         <div class="image-text-container">
             <!-- Box for Image 1 and Content -->
             <div class="image-text-box">
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 154923.png') }}" alt="Easy-to-Use Interface" />
-                <h3 style="color: deeppink;"> Easy to Use Interface</h3>
-                <p style="color:deeppink;">Our intuitive solutions ensure an ATS-friendly and beautifully designed resume. Get started today to boost your job prospects!</p>
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 154923.png') }}" alt="Easy-to-Use Interface" />
+                <h3 style="color: beige;"> Easy to Use Interface</h3>
+                <p style="color:dark grey;">Our intuitive solutions ensure an ATS-friendly and beautifully designed resume. Get started today to boost your job prospects!</p>
             </div>
 
             <!-- Box for Image 2 and Content -->
             <div class="image-text-box">
-                <img src="{{ url_for('static', filename='images\Screenshot 2024-12-08 154923.png') }}" alt="Our Expertise" />
-                <h3 style="color:deeppink;">Our Expertise</h3>
-                <p style="color:deeppink;">Our team of experts tailors resumes to meet job market demands, ensuring you stand out in the competitive job search landscape.</p>
+                <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 154923.png') }}" alt="Our Expertise" />
+                <h3 style="color:beige;">Our Expertise</h3>
+                <p style="color:grey;">Our team of experts tailors resumes to meet job market demands, ensuring you stand out in the competitive job search landscape.</p>
             </div>
         </div>
     </section>
@@ -210,7 +210,9 @@
         <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
             <input type="file" id="resumeFile" name="resumeFile" accept=".pdf" required />
             <button type="submit">Upload & Generate</button>
-            <input type="text" name="job_description" required />
+            <div>
+                <input type="text" name="job_description" placeholder="Enter Job Description" required />
+            </div>
         </form>
         <div id="resumeOutput">
             <!-- AI-generated resume details will appear here -->
