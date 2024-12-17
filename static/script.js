@@ -149,3 +149,51 @@ uploadForm.addEventListener("submit", (event) => {
         resumeOutput.innerHTML = `<p>Please upload a file.</p>`;
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('chatContainer');
+    const sendMessageButton = document.getElementById('sendMessage');
+    const userMessageInput = document.getElementById('userMessage');
+    const chatMessages = document.getElementById('chatMessages');
+    const closeChatButton = document.getElementById('closeChat');
+
+    // Function to toggle chat visibility
+    function toggleChat() {
+        chatContainer.style.display = chatContainer.style.display === 'none' ? 'flex' : 'none';
+    }
+
+    // Event listener for sending messages
+    sendMessageButton.addEventListener('click', function() {
+        const userMessage = userMessageInput.value;
+        if (userMessage.trim() !== '') {
+            // Display user message
+            chatMessages.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+            userMessageInput.value = '';
+
+            // Send message to Flask backend
+            fetch('/chatbot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botResponse = data.response;
+                    chatMessages.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });
+
+    // Close chat functionality
+    closeChatButton.addEventListener('click', function() {
+        chatContainer.style.display = 'none';
+    });
+
+    // Show chat on page load (optional)
+    toggleChat();
+});

@@ -91,6 +91,11 @@ def chatbot_response(user_input, chat_history_ids=None):
     # Generate response
     chat_history_ids = chatbot_model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
     bot_response = tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
+
+    # Fallback response if the model doesn't generate a valid response
+    if not bot_response.strip():
+        bot_response = "I'm sorry, I didn't quite understand that. Can you please rephrase?"
+
     return bot_response, chat_history_ids
 
 # Route to home page
@@ -136,10 +141,18 @@ def index():
 # Route to handle chatbot messages
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
-    chat_input = request.json.get('message')
-    if chat_input:
-        chatbot_reply, chat_history_ids = chatbot_response(chat_input, None)
-        return jsonify({'response': chatbot_reply})
+    user_input = request.json.get('message')
+    if user_input:
+        bot_response = generate_chatbot_response(user_input)
+        return jsonify({'response': bot_response})
+    return jsonify({'response': "I'm sorry, I didn't understand that."})
 
+def generate_chatbot_response(user_input):
+    # Encode the user input and generate a response
+    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
+    chat_history_ids = chatbot_model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+    bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
+    return bot_response
+    
 if __name__ == '__main__':
     app.run(debug=True)

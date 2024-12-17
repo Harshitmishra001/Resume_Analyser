@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 
 <body>
@@ -171,32 +172,17 @@
             </div>
         </div>
     </section>
-    <div class="chat-container">
-        <!-- Animal Chatbot -->
-        <div class="animal-container">
-            <div class="cat-face">
-                <div class="ear ear-left"></div>
-                <div class="ear ear-right"></div>
-                <div class="face">
-                    <div class="eyes">
-                        <div class="eye eye-left"></div>
-                        <div class="eye eye-right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                    <div class="whiskers">
-                        <div class="whisker whisker-left"></div>
-                        <div class="whisker whisker-right"></div>
-                    </div>
-                </div>
+    <!-- Chatbot Container -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3>Chat with Us!</h3>
+            <button id="closeChat">X</button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages" id="chatMessages">
+                <p>Hello! I’m your friendly talking cat. How can I help you today?</p>
             </div>
         </div>
-
-        <!-- Chat Bubble -->
-        <div class="chat-bubble">
-            <p id="chat-response">Hello! I’m your friendly talking cat. How can I help you today?</p>
-        </div>
-
-        <!-- User Input -->
         <div class="user-input">
             <input type="text" id="userMessage" placeholder="Type your message here..." />
             <button id="sendMessage">Send</button>
