@@ -1,0 +1,138 @@
+{
+    "intents": [{
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hello",
+                "Hey there",
+                "Hi, how can you help?",
+                "Is anyone here?",
+                "Good morning",
+                "Good evening"
+            ],
+            "responses": [
+                "Hello! I'm here to assist you with resume-related questions.",
+                "Hi there! How can I help you improve your resume today?",
+                "Hey! I specialize in resume advice. What would you like to know?",
+                "Hi! Let's make your resume shine. What do you need help with?"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "Goodbye",
+                "See you later",
+                "Thanks, bye!",
+                "Talk to you later",
+                "Take care"
+            ],
+            "responses": [
+                "Goodbye! Best of luck with your resume and job search.",
+                "Bye! Feel free to come back anytime for more resume tips.",
+                "See you later! Keep working on that perfect resume!",
+                "Take care! Remember, a great resume opens doors to great opportunities."
+            ]
+        },
+        {
+            "tag": "resume_format",
+            "patterns": [
+                "What is the best format for a resume?",
+                "Which resume format is better?",
+                "Can you guide me about resume formatting?",
+                "What format should I use for my resume?",
+                "Which is better: chronological or functional resume?"
+            ],
+            "responses": [
+                "The best format depends on your experience. Chronological resumes highlight work history, functional resumes emphasize skills, and combination resumes mix both.",
+                "If you have a consistent work history, a chronological format works best. For career changers, a functional format is ideal.",
+                "Combination resumes are great if you want to emphasize both skills and experience. Choose based on what suits the job you're applying for.",
+                "Make sure your format is clean, easy to read, and tailored to the job."
+            ]
+        },
+        {
+            "tag": "resume_length",
+            "patterns": [
+                "How long should a resume be?",
+                "Is a two-page resume okay?",
+                "Can I make my resume more than one page?",
+                "What is the ideal length for a resume?",
+                "Should my resume be one or two pages?"
+            ],
+            "responses": [
+                "A resume should ideally be one page for entry-level positions and up to two pages for experienced professionals.",
+                "Focus on quality over quantity. Highlight only relevant experience and skills to keep your resume concise.",
+                "If your experience and achievements are extensive, a two-page resume is acceptable, but make sure it's well-organized.",
+                "Employers prefer resumes that are clear and to the point. Avoid unnecessary details."
+            ]
+        },
+        {
+            "tag": "resume_tips",
+            "patterns": [
+                "Can you give me tips for my resume?",
+                "How can I improve my resume?",
+                "What are some common resume mistakes?",
+                "What should I include in my resume?",
+                "How do I make my resume stand out?"
+            ],
+            "responses": [
+                "Use action verbs to describe your achievements. Quantify results where possible, like 'Increased sales by 20%'.",
+                "Tailor your resume for each job. Highlight skills and experiences that match the job description.",
+                "Avoid common mistakes like typos, inconsistent formatting, and irrelevant information.",
+                "Focus on showcasing your achievements and contributions, not just job responsibilities.",
+                "Keep your design simple and professional. Use bullet points for clarity."
+            ]
+        },
+        {
+            "tag": "resume_keywords",
+            "patterns": [
+                "What are keywords in a resume?",
+                "How do I add keywords to my resume?",
+                "Can you help me with resume keywords?",
+                "What keywords should I use?",
+                "Why are keywords important in a resume?"
+            ],
+            "responses": [
+                "Keywords are specific terms related to the job. They include skills, tools, and qualifications mentioned in the job description.",
+                "Review the job posting carefully and use keywords that match its requirements. For example, 'Python', 'project management', or 'team leadership'.",
+                "Including the right keywords improves your chances of passing applicant tracking systems (ATS).",
+                "Make sure your keywords fit naturally into your resume. Avoid stuffing them unnecessarily.",
+                "Customize your keywords for every application. Highlight the most relevant ones for each job."
+            ]
+        },
+        {
+            "tag": "cover_letter",
+            "patterns": [
+                "Do I need a cover letter?",
+                "What should I include in my cover letter?",
+                "Can you help me write a cover letter?",
+                "How important is a cover letter?",
+                "What makes a good cover letter?"
+            ],
+            "responses": [
+                "A cover letter introduces you to the employer. Include your interest in the role, your qualifications, and how you can contribute.",
+                "A great cover letter is tailored to the job. Highlight your relevant experience and enthusiasm for the position.",
+                "While not all jobs require cover letters, submitting one can give you an edge over other candidates.",
+                "Focus on your achievements and explain why you're the perfect fit for the job.",
+                "Keep your cover letter concise and professional. Avoid repeating your resume—use it to add value."
+            ]
+        },
+        {
+            "tag": "thank_you",
+            "patterns": [
+                "Thank you",
+                "Thanks a lot",
+                "That's helpful",
+                "I appreciate it",
+                "Thank you so much"
+            ],
+            "responses": [
+                "You're welcome! I'm always here to help.",
+                "Glad I could help! Let me know if you have more questions.",
+                "Happy to assist! Best of luck with your resume.",
+                "You're welcome! Keep working towards that dream job.",
+                "My pleasure! Wishing you success in your job applications."
+            ]
+        }
+    ]
+}

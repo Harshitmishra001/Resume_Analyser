@@ -8,7 +8,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 import io
-
+from chat import get_response
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
@@ -17,7 +17,6 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
 chatbot_model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
 
 app = Flask(__name__)
-
 # Function to extract text from PDF
 def extract_text_from_pdf(pdf_file):
     with pdfplumber.open(pdf_file) as pdf:
@@ -139,20 +138,26 @@ def index():
     return render_template('index.html')
 
 # Route to handle chatbot messages
-@app.route('/chatbot', methods=['POST'])
-def chatbot():
-    user_input = request.json.get('message')
-    if user_input:
-        bot_response = generate_chatbot_response(user_input)
-        return jsonify({'response': bot_response})
-    return jsonify({'response': "I'm sorry, I didn't understand that."})
+# @app.route('/chatbot', methods=['POST'])
+# def chatbot():
+#     user_input = request.json.get('message')
+#     if user_input:
+#         bot_response = generate_chatbot_response(user_input)
+#         return jsonify({'response': bot_response})
+#     return jsonify({'response': "I'm sorry, I didn't understand that."})
 
-def generate_chatbot_response(user_input):
-    # Encode the user input and generate a response
-    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
-    chat_history_ids = chatbot_model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
-    bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
-    return bot_response
+# def generate_chatbot_response(user_input):
+#     # Encode the user input and generate a response
+#     input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
+#     chat_history_ids = chatbot_model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+#     bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
+#     return bot_response
+@app.post("/predict")
+def predict():
+    text = request.get_json().get("message")
+    response = get_response(text)
+    message = {"answer":response}
+    return jsonify(message)
     
 if __name__ == '__main__':
     app.run(debug=True)

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 
 <body>
@@ -173,21 +172,34 @@
         </div>
     </section>
     <!-- Chatbot Container -->
-    <div class="chat-container" id="chatContainer">
-        <div class="chat-header">
-            <h3>Chat with Us!</h3>
-            <button id="closeChat">X</button>
-        </div>
-        <div class="chat-body">
-            <div class="chat-messages" id="chatMessages">
-                <p>Hello! I’m your friendly talking cat. How can I help you today?</p>
+
+    <div class="container">
+        <div class="chatbox">
+            <div class="chatbox__support">
+                <div class="chatbox__header">
+                    <div class="chatbox__image--header">
+                        <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                    </div>
+                    <div class="chatbox__content--header">
+                        <h4 class="chatbox__heading--header">Chat support</h4>
+                        <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
+                    </div>
+                </div>
+                <div class="chatbox__messages">
+                    <div></div>
+                </div>
+                <div class="chatbox__footer">
+                    <input type="text" placeholder="Write a message...">
+                    <button class="chatbox__send--footer send__button">Send</button>
+                </div>
+            </div>
+            <div class="chatbox__button">
+                <button><img src="./images/chatbox-icon.svg" /></button>
             </div>
         </div>
-        <div class="user-input">
-            <input type="text" id="userMessage" placeholder="Type your message here..." />
-            <button id="sendMessage">Send</button>
-        </div>
     </div>
+
+
 
     <!-- Resume Upload Section -->
     <!-- Resume Upload Section -->
@@ -212,6 +224,14 @@
         <p>Email: <a href="mailto:support@resumegenerator.com">support@resumegenerator.com</a></p>
         <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
     </section>
+    <!-- <script>
+        // Define SCRIPT_ROOT using Jinja2 to get the script root
+        // var SCRIPT_ROOT = {
+        //     {
+        //         request.script_root | tojson
+        //     }
+        // };
+    </script> -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>

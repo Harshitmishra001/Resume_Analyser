@@ -1,4 +1,93 @@
 // JavaScript for Navigation Buttons
+class Chatbox {
+    constructor() {
+        this.args = {
+            openButton: document.querySelector('.chatbox__button'),
+            chatBox: document.querySelector('.chatbox__support'),
+            sendButton: document.querySelector('.send__button')
+        }
+
+        this.state = false;
+        this.messages = [];
+    }
+
+    display() {
+        const { openButton, chatBox, sendButton } = this.args;
+
+        openButton.addEventListener('click', () => this.toggleState(chatBox))
+
+        sendButton.addEventListener('click', () => this.onSendButton(chatBox))
+
+        const node = chatBox.querySelector('input');
+        node.addEventListener("keyup", ({ key }) => {
+            if (key === "Enter") {
+                this.onSendButton(chatBox)
+            }
+        })
+    }
+
+    toggleState(chatbox) {
+        this.state = !this.state;
+
+        // show or hides the box
+        if (this.state) {
+            chatbox.classList.add('chatbox--active')
+        } else {
+            chatbox.classList.remove('chatbox--active')
+        }
+    }
+
+    onSendButton(chatbox) {
+        var textField = chatbox.querySelector('input');
+        let text1 = textField.value
+        if (text1 === "") {
+            return;
+        }
+
+        let msg1 = { name: "User", message: text1 }
+        this.messages.push(msg1);
+
+        fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                body: JSON.stringify({ message: text1 }),
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(r => r.json())
+            .then(r => {
+                let msg2 = { name: "Sam", message: r.answer };
+                this.messages.push(msg2);
+                this.updateChatText(chatbox)
+                textField.value = ''
+
+            }).catch((error) => {
+                console.error('Error:', error);
+                this.updateChatText(chatbox)
+                textField.value = ''
+            });
+    }
+
+    updateChatText(chatbox) {
+        var html = '';
+        this.messages.slice().reverse().forEach(function(item, index) {
+            if (item.name === "Sam") {
+                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+            } else {
+                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
+            }
+        });
+
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
+        chatmessage.innerHTML = html;
+    }
+}
+
+
+const chatbox = new Chatbox();
+chatbox.display();
+
 document.getElementById("resourcesButton").addEventListener("click", () => {
     alert("Redirecting to Resources Section!");
     // Code to redirect to resources section
@@ -149,51 +238,52 @@ uploadForm.addEventListener("submit", (event) => {
         resumeOutput.innerHTML = `<p>Please upload a file.</p>`;
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const chatContainer = document.getElementById('chatContainer');
-    const sendMessageButton = document.getElementById('sendMessage');
-    const userMessageInput = document.getElementById('userMessage');
-    const chatMessages = document.getElementById('chatMessages');
-    const closeChatButton = document.getElementById('closeChat');
 
-    // Function to toggle chat visibility
-    function toggleChat() {
-        chatContainer.style.display = chatContainer.style.display === 'none' ? 'flex' : 'none';
-    }
+// document.addEventListener('DOMContentLoaded', function() {
+//     const chatContainer = document.getElementById('chatContainer');
+//     const sendMessageButton = document.getElementById('sendMessage');
+//     const userMessageInput = document.getElementById('userMessage');
+//     const chatMessages = document.getElementById('chatMessages');
+//     const closeChatButton = document.getElementById('closeChat');
 
-    // Event listener for sending messages
-    sendMessageButton.addEventListener('click', function() {
-        const userMessage = userMessageInput.value;
-        if (userMessage.trim() !== '') {
-            // Display user message
-            chatMessages.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
-            userMessageInput.value = '';
+//     // Function to toggle chat visibility
+//     function toggleChat() {
+//         chatContainer.style.display = chatContainer.style.display === 'none' ? 'flex' : 'none';
+//     }
 
-            // Send message to Flask backend
-            fetch('/chatbot', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ message: userMessage })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const botResponse = data.response;
-                    chatMessages.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
-                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    });
+//     // Event listener for sending messages
+//     sendMessageButton.addEventListener('click', function() {
+//         const userMessage = userMessageInput.value;
+//         if (userMessage.trim() !== '') {
+//             // Display user message
+//             chatMessages.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+//             userMessageInput.value = '';
 
-    // Close chat functionality
-    closeChatButton.addEventListener('click', function() {
-        chatContainer.style.display = 'none';
-    });
+//             // Send message to Flask backend
+//             fetch('/chatbot', {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify({ message: userMessage })
+//                 })
+//                 .then(response => response.json())
+//                 .then(data => {
+//                     const botResponse = data.response;
+//                     chatMessages.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+//                     chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+//                 })
+//                 .catch(error => {
+//                     console.error('Error:', error);
+//                 });
+//         }
+//     });
 
-    // Show chat on page load (optional)
-    toggleChat();
-});
+//     // Close chat functionality
+//     closeChatButton.addEventListener('click', function() {
+//         chatContainer.style.display = 'none';
+//     });
+
+//     // Show chat on page load (optional)
+//     toggleChat();
+// });
