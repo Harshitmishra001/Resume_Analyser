@@ -9,6 +9,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 import io
 from chat import get_response
+
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
@@ -17,6 +18,20 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
 chatbot_model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
 
 app = Flask(__name__)
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure the uploads directory exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# Dictionary of synonyms for skills
+skill_synonyms = {
+    "project management": ["project manager", "managing projects", "project lead"],
+    "data analysis": ["data analyst", "analyzing data", "data interpretation"],
+    # Add more synonyms as needed
+}
+
 # Function to extract text from PDF
 def extract_text_from_pdf(pdf_file):
     with pdfplumber.open(pdf_file) as pdf:
@@ -25,38 +40,56 @@ def extract_text_from_pdf(pdf_file):
             text += page.extract_text()
     return text
 
+# Function to normalize skills
+def normalize_skills(skills):
+    normalized = set()
+    for skill in skills:
+        skill_lower = skill.lower()  # Normalize to lowercase
+        found = False
+        for key, synonyms in skill_synonyms.items():
+            if skill_lower == key.lower() or skill_lower in map(str.lower, synonyms):
+                normalized.add(key.lower())  # Store normalized key in lowercase
+                found = True
+                break
+        if not found:
+            normalized.add(skill_lower)  # Add the skill in lowercase
+    return normalized
+
 # Function to extract skills from text
 def extract_skills(text):
     doc = nlp(text)
-    skills = [ent.text for ent in doc.ents if ent.label_ in ["SKILL", "PERSON", "ORG"]]
+    skills = [ent.text.lower() for ent in doc.ents if ent.label_ in ["SKILL", "PERSON", "ORG", "CERTIFICATION", "EDUCATION"]]
     return skills
 
 # Function to parse job description and extract skills
 def parse_job_description(job_description):
     doc = nlp(job_description)
-    job_skills = [ent.text for ent in doc.ents if ent.label_ in ["SKILL", "PERSON", "ORG"]]
+    job_skills = [ent.text for ent in doc.ents if ent.label_ in ["SKILL", "PERSON", "ORG", "CERTIFICATION", "EDUCATION"]]
     return job_skills
 
-# Function to calculate match percentage using TF-IDF
-def calculate_match_percentage(resume_skills, job_skills):
-    vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform([" ".join(resume_skills), " ".join(job_skills)])
-    cosine_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2]).flatten()
-    return round(cosine_sim[0] * 100, 2)
+# Function to calculate weighted match percentage
 
+def calculate_weighted_match_percentage(resume_skills, job_skills):
+    # Convert resume_skills to a list for counting
+    resume_skills_list = list(resume_skills)
+    
+    # Convert job_skills to a list to count occurrences
+    job_skills_list = list(job_skills)
+    
+    # Count occurrences of each skill in job_skills
+    job_skill_counts = {skill: job_skills_list.count(skill) for skill in set(job_skills_list)}
+    
+    # Calculate weighted match
+    match_score = sum(job_skill_counts[skill] for skill in resume_skills_list if skill in job_skill_counts)
+    total_weight = sum(job_skill_counts.values())
+    
+    return round((match_score / total_weight) * 100, 2) if total_weight > 0 else 0
 # Function to suggest additional skills
 def suggest_skills(resume_skills, job_skills):
     missing_skills = set(job_skills) - set(resume_skills)
     if not missing_skills:
         return "No additional skills are needed! Your resume matches the job requirements well."
     return f"Consider adding these skills to your resume: {', '.join(missing_skills)}"
-
-# Function to suggest remove skills
-def suggest_reskills(resume_skills, job_skills):
-    missing_skills = set(resume_skills) - set(job_skills)
-    if not missing_skills:
-        return "No additional skills are needed! Your resume matches the job requirements well."
-    return f"Consider removing these skills from your resume: {', '.join(missing_skills)}"
 
 # Function to visualize skill match
 def plot_skill_match(resume_skills, job_skills):
@@ -78,86 +111,42 @@ def plot_skill_match(resume_skills, job_skills):
     plt.close(fig)
     return buf
 
-# Function to generate chatbot response using DialoGPT
-def chatbot_response(user_input, chat_history_ids=None):
-    # Encode the user input and append to chat history
-    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
-    if chat_history_ids is not None:
-        bot_input_ids = torch.cat([chat_history_ids, input_ids], dim=-1)
-    else:
-        bot_input_ids = input_ids
-    
-    # Generate response
-    chat_history_ids = chatbot_model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
-    bot_response = tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
-
-    # Fallback response if the model doesn't generate a valid response
-    if not bot_response.strip():
-        bot_response = "I'm sorry, I didn't quite understand that. Can you please rephrase?"
-
-    return bot_response, chat_history_ids
-
-# Route to home page
-app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Ensure the uploads directory exists
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         uploaded_file = request.files['resumeFile']
         job_description = request.form['job_description']
-        
+        user_skills = request.form.get('user_skills', '').split(',')
+
         if uploaded_file and job_description:
             # Process resume PDF
             resume_text = extract_text_from_pdf(uploaded_file)
 
-            # Extract skills from resume and job description
-            resume_skills = extract_skills(resume_text)
-            job_skills = parse_job_description(job_description)
+            # Extract and normalize skills
+            resume_skills = normalize_skills(extract_skills(resume_text))
+            job_skills = normalize_skills(parse_job_description(job_description))
+
+            # Include user input skills
+            resume_skills.update(normalize_skills(user_skills))
 
             # Calculate match percentage
-            match_percentage = calculate_match_percentage(resume_skills, job_skills)
+            match_percentage = calculate_weighted_match_percentage(resume_skills, job_skills)
 
-            # Skill suggestions
+            # Skill suggestions and visualization
             additional_skills = suggest_skills(resume_skills, job_skills)
-            additional_remskills = suggest_reskills(resume_skills, job_skills)
-
-            # Visualization
             plot_image = plot_skill_match(resume_skills, job_skills)
 
-            # Return the result to the template
             return render_template('results.html', match_percentage=match_percentage, resume_skills=resume_skills,
-                                job_skills=job_skills, additional_skills=additional_skills, additional_remskills=additional_remskills,
-                                plot_image=plot_image)
+                                job_skills=job_skills, additional_skills=additional_skills, plot_image=plot_image)
 
     return render_template('index.html')
 
-# Route to handle chatbot messages
-# @app.route('/chatbot', methods=['POST'])
-# def chatbot():
-#     user_input = request.json.get('message')
-#     if user_input:
-#         bot_response = generate_chatbot_response(user_input)
-#         return jsonify({'response': bot_response})
-#     return jsonify({'response': "I'm sorry, I didn't understand that."})
-
-# def generate_chatbot_response(user_input):
-#     # Encode the user input and generate a response
-#     input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors="pt")
-#     chat_history_ids = chatbot_model.generate(input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
-#     bot_response = tokenizer.decode(chat_history_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
-#     return bot_response
 @app.post("/predict")
 def predict():
     text = request.get_json().get("message")
     response = get_response(text)
-    message = {"answer":response}
+    message = {"answer": response}
     return jsonify(message)
-    
+
 if __name__ == '__main__':
     app.run(debug=True)
