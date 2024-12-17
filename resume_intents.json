@@ -133,6 +133,260 @@
                 "You're welcome! Keep working towards that dream job.",
                 "My pleasure! Wishing you success in your job applications."
             ]
+        },
+        {
+            "tag": "career_objective",
+            "patterns": [
+                "How do I write a career objective?",
+                "Can you help me with a career objective?",
+                "What is a good career objective?",
+                "What should I include in my career objective?"
+            ],
+            "responses": [
+                "A good career objective is concise and aligns with the role you're applying for. For example, 'To leverage my skills in [your skill] to contribute to [company's goal]'.",
+                "Focus on your goals and how they match the company's needs. Highlight your strengths and career aspirations.",
+                "Tailor your career objective to the job. Use keywords that reflect the role and industry.",
+                "Avoid generic statements. Instead, showcase your value proposition and how you can benefit the company."
+            ]
+        },
+        {
+            "tag": "ats_optimization",
+            "patterns": [
+                "What is ATS optimization?",
+                "How do I make my resume ATS-friendly?",
+                "What is an ATS system?",
+                "How to pass ATS screening?",
+                "Why is ATS important for resumes?"
+            ],
+            "responses": [
+                "ATS stands for Applicant Tracking System, which scans resumes for specific keywords and formats.",
+                "To optimize your resume for ATS, use standard fonts, clear section headers, and keywords from the job description.",
+                "Avoid images, charts, or unconventional formats, as they may not be read correctly by ATS software.",
+                "Include both full forms and abbreviations of key terms. For example, 'Artificial Intelligence (AI)'.",
+                "Customizing your resume for each job with relevant keywords increases your chances of passing ATS."
+            ]
+        },
+        {
+            "tag": "portfolio",
+            "patterns": [
+                "Do I need a portfolio?",
+                "How do I create a professional portfolio?",
+                "What should I include in my portfolio?",
+                "Can you help me with my portfolio?",
+                "Why is a portfolio important?"
+            ],
+            "responses": [
+                "A portfolio is essential for showcasing your work, especially for creative and technical roles.",
+                "Include your best work, organized by category or project. Add links to live projects if possible.",
+                "Highlight your role, tools used, and results achieved in each project. Keep it visually appealing and easy to navigate.",
+                "An online portfolio, like a personal website or LinkedIn profile, makes it easy for employers to access your work.",
+                "Tailor your portfolio to the job by showcasing relevant projects and skills."
+            ]
+        },
+        {
+            "tag": "salary_negotiation",
+            "patterns": [
+                "How do I negotiate salary?",
+                "Can you help me with salary negotiation?",
+                "What are tips for salary negotiation?",
+                "How do I respond to salary expectations?",
+                "How do I ask for a higher salary?"
+            ],
+            "responses": [
+                "Research market rates for your role and location before discussing salary.",
+                "Be confident and articulate your value to the company. Highlight your skills and achievements.",
+                "When asked about salary expectations, provide a range based on your research or say you're open to discussion.",
+                "If the offer is lower than expected, politely express your interest but ask for a review based on your qualifications.",
+                "Always remain professional and open to negotiation. Focus on total compensation, including benefits."
+            ]
+        },
+        {
+            "tag": "certifications",
+            "patterns": [
+                "Which certifications should I add to my resume?",
+                "Are certifications important?",
+                "What certifications are valuable?",
+                "How do I list certifications on my resume?",
+                "Can you suggest some good certifications?"
+            ],
+            "responses": [
+                "Certifications show expertise in specific skills. Include ones relevant to the job, like 'AWS Certified Solutions Architect' for tech roles.",
+                "Place certifications in a separate section and include the certification name, issuing organization, and date earned.",
+                "Popular certifications include PMP, CISSP, Google Analytics, and industry-specific ones.",
+                "Choose certifications that match the job requirements and highlight your commitment to professional development.",
+                "If you're pursuing a certification, mention it as 'In Progress' with the expected completion date."
+            ]
+        },
+        {
+            "tag": "achievements",
+            "patterns": [
+                "How do I list achievements on my resume?",
+                "What are examples of achievements?",
+                "Can you help me write achievements?",
+                "What counts as an achievement on a resume?",
+                "How do I showcase my accomplishments?"
+            ],
+            "responses": [
+                "List achievements that demonstrate your impact, such as 'Increased sales by 30%' or 'Reduced project costs by 15%'.",
+                "Focus on quantifiable results and use action verbs to describe your accomplishments.",
+                "Include awards, recognitions, and significant contributions to projects or teams.",
+                "Tailor your achievements to the job description. Highlight ones that align with the employer's goals.",
+                "Showcase leadership, problem-solving, and innovation through your achievements."
+            ]
+        },
+        {
+            "tag": "internship_experience",
+            "patterns": [
+                "How do I include internships on my resume?",
+                "Are internships important for a resume?",
+                "What should I write about my internship?",
+                "How do I list an internship experience?",
+                "What if I only have internship experience?"
+            ],
+            "responses": [
+                "Include internships under a section titled 'Internship Experience' or 'Professional Experience'.",
+                "Mention the company name, role, duration, and key responsibilities or achievements.",
+                "Focus on accomplishments and skills gained during the internship that are relevant to the job.",
+                "If you only have internship experience, emphasize how it prepared you for the role you're applying for.",
+                "Internships are a great way to show practical experience. Highlight projects or results you contributed to."
+            ]
+        },
+        {
+            "tag": "soft_skills",
+            "patterns": [
+                "What soft skills should I include?",
+                "How do I showcase soft skills on my resume?",
+                "What are examples of soft skills?",
+                "Can you suggest some important soft skills?",
+                "Are soft skills important on a resume?"
+            ],
+            "responses": [
+                "Soft skills like communication, teamwork, problem-solving, and adaptability are highly valued.",
+                "Highlight soft skills through examples in your experience section. For example, 'Collaborated with a team to complete a major project.'",
+                "Include soft skills relevant to the job description. Use action words to show how you apply them.",
+                "Examples of soft skills include leadership, time management, conflict resolution, and emotional intelligence.",
+                "While listing soft skills, make sure to back them up with evidence in your accomplishments or experience."
+            ]
+        },
+        {
+            "tag": "soft_skills",
+            "patterns": [
+                "What soft skills should I include?",
+                "How do I showcase soft skills on my resume?",
+                "What are examples of soft skills?",
+                "Can you suggest some important soft skills?",
+                "Are soft skills important on a resume?"
+            ],
+            "responses": [
+                "Soft skills like communication, teamwork, problem-solving, and adaptability are highly valued.",
+                "Highlight soft skills through examples in your experience section. For example, 'Collaborated with a team to complete a major project.'",
+                "Include soft skills relevant to the job description. Use action words to show how you apply them.",
+                "Examples of soft skills include leadership, time management, conflict resolution, and emotional intelligence.",
+                "While listing soft skills, make sure to back them up with evidence in your accomplishments or experience."
+            ]
+        },
+        {
+            "tag": "career_gap",
+            "patterns": [
+                "How do I explain a career gap?",
+                "What should I do about a gap in my resume?",
+                "How do I address a career break?",
+                "Is a career gap bad for my resume?",
+                "Can I hide a career gap on my resume?"
+            ],
+            "responses": [
+                "Be honest about career gaps. Mention them in your cover letter or during interviews, focusing on what you learned.",
+                "If you were upskilling, freelancing, or volunteering, include those activities to show productivity during the gap.",
+                "Career gaps aren't necessarily bad. Employers value transparency and skills you gained during that time.",
+                "You can address gaps with a functional resume format, emphasizing skills and achievements over chronology.",
+                "Highlight how you're ready and qualified to return to the workforce, focusing on your capabilities."
+            ]
+        },
+        {
+            "tag": "freelance_experience",
+            "patterns": [
+                "How do I add freelance work to my resume?",
+                "Is freelancing valid work experience?",
+                "What should I include about freelance projects?",
+                "Can freelance work help my resume?",
+                "How do I explain my freelance experience?"
+            ],
+            "responses": [
+                "Freelancing counts as valid work experience. List it like any other job with your role, client/project names, and dates.",
+                "Highlight skills used and results achieved in your freelance work. For example, 'Designed a website that increased client traffic by 25%'.",
+                "If you've freelanced extensively, group it under 'Freelance Experience' or 'Independent Projects'.",
+                "Freelance experience shows initiative and expertise. Tailor your descriptions to the job you're applying for.",
+                "Include testimonials or links to your portfolio, if possible, to validate your freelance work."
+            ]
+        },
+        {
+            "tag": "education_section",
+            "patterns": [
+                "How do I write the education section?",
+                "What should I include in the education section?",
+                "Can you help me structure my education details?",
+                "Is education important on a resume?",
+                "What if I have little work experience but strong education?"
+            ],
+            "responses": [
+                "In the education section, include your degree, institution name, graduation year, and relevant achievements or coursework.",
+                "If you're a recent graduate, place education at the top of your resume. Include your GPA if it's strong.",
+                "Mention relevant certifications, projects, or coursework that align with the job requirements.",
+                "For experienced professionals, keep education brief, focusing on your highest degree and relevant certifications.",
+                "If education is your strength, use it to showcase your skills. Highlight awards, honors, or leadership roles during your studies."
+            ]
+        },
+        {
+            "tag": "hobbies_and_interests",
+            "patterns": [
+                "Should I include hobbies on my resume?",
+                "What hobbies should I add to my resume?",
+                "Can hobbies help my resume?",
+                "How do I list hobbies and interests?",
+                "Are hobbies important in a resume?"
+            ],
+            "responses": [
+                "Include hobbies if they're relevant to the job or showcase transferable skills, like teamwork or creativity.",
+                "Examples of good hobbies are volunteering, blogging, team sports, or learning a new skill.",
+                "Avoid listing generic or controversial hobbies. Focus on ones that add value to your profile.",
+                "Hobbies can help personalize your resume and show traits like passion or commitment.",
+                "Place hobbies at the bottom of your resume under a section titled 'Interests' or 'Hobbies'."
+            ]
+        },
+        {
+            "tag": "references",
+            "patterns": [
+                "Do I need references on my resume?",
+                "How do I include references?",
+                "What is the format for references?",
+                "Should I write 'references available upon request'?",
+                "Can you help with references?"
+            ],
+            "responses": [
+                "References are usually not included in the resume itself. Provide them separately when requested.",
+                "Instead of writing 'References available upon request', use that space for other valuable content.",
+                "Prepare a list of professional references with their names, titles, contact information, and your relationship with them.",
+                "Choose references who can speak positively about your skills and work ethic.",
+                "Always ask for permission before listing someone as a reference and inform them about the jobs you're applying for."
+            ]
+        },
+        {
+            "tag": "volunteer_work",
+            "patterns": [
+                "Should I include volunteer work?",
+                "How do I add volunteer work to my resume?",
+                "What should I write about volunteering?",
+                "Can volunteering help my resume?",
+                "Is volunteer experience important?"
+            ],
+            "responses": [
+                "Volunteer work is valuable, especially if it showcases skills or traits relevant to the job.",
+                "List volunteer roles like jobs: include the organization, your role, and key achievements.",
+                "Highlight leadership, teamwork, or skills gained during your volunteer experience.",
+                "If you lack professional experience, volunteer work can strengthen your resume.",
+                "Use volunteer work to show your commitment to causes and communities, which many employers value."
+            ]
         }
+
     ]
 }
