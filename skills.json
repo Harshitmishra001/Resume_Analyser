@@ -1,0 +1,839 @@
+{
+    "skills": [{
+            "skill": "project management",
+            "resources": [{
+                    "name": "Project Management Institute (PMI)",
+                    "link": "https://www.pmi.org/",
+                    "description": "Official PMI site for certifications like PMP."
+                },
+                {
+                    "name": "Coursera - Project Management Certification",
+                    "link": "https://www.coursera.org/professional-certificates/uc-davis-project-management",
+                    "description": "Learn project management methodologies and frameworks."
+                },
+                {
+                    "name": "Udemy - PMP Exam Prep",
+                    "link": "https://www.udemy.com/course/pmp-exam-prep/",
+                    "description": "Prepare for the Project Management Professional (PMP) exam."
+                }
+            ]
+        },
+        {
+            "skill": "data analysis",
+            "resources": [{
+                    "name": "DataCamp - Data Analyst with Python",
+                    "link": "https://www.datacamp.com/courses/data-analysis-python",
+                    "description": "Learn data analysis using Python with hands-on projects."
+                },
+                {
+                    "name": "Khan Academy - Data Science Course",
+                    "link": "https://www.khanacademy.org/computing/computer-programming/programming",
+                    "description": "Introductory data science course with Python."
+                },
+                {
+                    "name": "Google Analytics Academy - Google Analytics for Beginners",
+                    "link": "https://analytics.google.com/analytics/academy/",
+                    "description": "Fundamentals of Google Analytics for data tracking."
+                }
+            ]
+        },
+        {
+            "skill": "web development",
+            "resources": [{
+                    "name": "FreeCodeCamp - Full Stack Developer Certification",
+                    "link": "https://www.freecodecamp.org/learn/",
+                    "description": "Comprehensive web development certification covering HTML, CSS, JavaScript, and more."
+                },
+                {
+                    "name": "Udacity - Front End Web Developer Nanodegree",
+                    "link": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
+                    "description": "Learn front-end web development with hands-on projects."
+                },
+                {
+                    "name": "edX - Introduction to Web Development",
+                    "link": "https://www.edx.org/course/introduction-to-web-development",
+                    "description": "Beginner to intermediate course on web development."
+                }
+            ]
+        },
+        {
+            "skill": "machine learning",
+            "resources": [{
+                    "name": "Coursera - Machine Learning Specialization",
+                    "link": "https://www.coursera.org/specializations/machine-learning",
+                    "description": "Deep dive into machine learning algorithms, techniques, and best practices."
+                },
+                {
+                    "name": "edX - Introduction to Machine Learning",
+                    "link": "https://www.edx.org/course/introduction-to-machine-learning",
+                    "description": "Learn the basics of machine learning from top universities."
+                },
+                {
+                    "name": "Kaggle - Intro to Machine Learning Competitions",
+                    "link": "https://www.kaggle.com/learn/overview",
+                    "description": "Participate in machine learning competitions and apply techniques in real-world projects."
+                }
+            ]
+        },
+        {
+            "skill": "cloud computing",
+            "resources": [{
+                    "name": "AWS Certified Solutions Architect - Associate",
+                    "link": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+                    "description": "Validate your technical skills in AWS cloud architecture."
+                },
+                {
+                    "name": "Azure Fundamentals Course on Microsoft Learn",
+                    "link": "https://learn.microsoft.com/en-us/training/paths/fundamentals-of-azure/",
+                    "description": "Fundamentals of Microsoft Azure cloud services."
+                },
+                {
+                    "name": "Google Cloud Platform - Getting Started with GCP",
+                    "link": "https://cloud.google.com/training",
+                    "description": "Learn the basics of Google Cloud Platform."
+                }
+            ]
+        },
+        {
+            "skill": "python programming",
+            "resources": [{
+                    "name": "Python for Data Science Handbook by Jake VanderPlas",
+                    "link": "https://jakevdp.github.io/PythonDataScienceHandbook/",
+                    "description": "A comprehensive guide to data analysis, visualization, and machine learning with Python."
+                },
+                {
+                    "name": "Codecademy - Learn Python",
+                    "link": "https://www.codecademy.com/learn/learn-python-3",
+                    "description": "Interactive Python tutorials for beginners."
+                },
+                {
+                    "name": "Real Python",
+                    "link": "https://realpython.com/",
+                    "description": "Python tutorials, articles, and projects to level up your Python skills."
+                }
+            ]
+        },
+        {
+            "skill": "data visualization",
+            "resources": [{
+                    "name": "Matplotlib Documentation",
+                    "link": "https://matplotlib.org/stable/users/contents.html",
+                    "description": "Comprehensive guide to Python data visualization library Matplotlib."
+                },
+                {
+                    "name": "Seaborn - Statistical Data Visualization with Python",
+                    "link": "https://seaborn.pydata.org/",
+                    "description": "Learn how to create beautiful and informative statistical data visualizations using Seaborn."
+                },
+                {
+                    "name": "Tableau Public",
+                    "link": "https://public.tableau.com/",
+                    "description": "Visualize and share your data with Tableau Public, a free version of Tableau."
+                }
+            ]
+        },
+        {
+            "skill": "python",
+            "resources": [{
+                    "name": "Official Python Documentation",
+                    "link": "https://docs.python.org/3/",
+                    "description": "The official documentation for Python."
+                },
+                {
+                    "name": "Learn Python the Hard Way",
+                    "link": "https://learnpythonthehardway.org/",
+                    "description": "A book that teaches Python through exercises."
+                },
+                {
+                    "name": "Automate the Boring Stuff with Python",
+                    "link": "https://automatetheboringstuff.com/",
+                    "description": "A practical programming book for beginners."
+                }
+            ]
+        },
+        {
+            "skill": "javascript",
+            "resources": [{
+                    "name": "MDN Web Docs - JavaScript",
+                    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+                    "description": "Comprehensive documentation for JavaScript."
+                },
+                {
+                    "name": "Eloquent JavaScript",
+                    "link": "https://eloquentjavascript.net/",
+                    "description": "A book about JavaScript, programming, and the wonders of the digital."
+                },
+                {
+                    "name": "You Don't Know JS",
+                    "link": "https://github.com/getify/You-Dont-Know-JS",
+                    "description": "A series of books diving deep into the core mechanisms of the JavaScript language."
+                }
+            ]
+        },
+        {
+            "skill": "java",
+            "resources": [{
+                    "name": "Oracle Java Tutorials",
+                    "link": "https://docs.oracle.com/javase/tutorial/",
+                    "description": "The official Java tutorials from Oracle."
+                },
+                {
+                    "name": "Head First Java",
+                    "link": "https://www.oreilly.com/library/view/head-first-java/9780596009205/",
+                    "description": "A brain-friendly guide to learning Java."
+                },
+                {
+                    "name": "Effective Java",
+                    "link": "https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/",
+                    "description": "A book on best practices for Java programming."
+                }
+            ]
+        },
+        {
+            "skill": "c#",
+            "resources": [{
+                    "name": "Microsoft C# Documentation",
+                    "link": "https://docs.microsoft.com/en-us/dotnet/csharp/",
+                    "description": "Official C# documentation from Microsoft."
+                },
+                {
+                    "name": "C# in Depth",
+                    "link": "https://csharpindepth.com/",
+                    "description": "A book that teaches the details of the C# language."
+                },
+                {
+                    "name": "C# Yellow Book",
+                    "link": "https://www.robmiles.com/s/CSharp-Book-2019-Refresh.pdf",
+                    "description": "A free book used in the Department of Computer Science at the University of Hull."
+                }
+            ]
+        },
+        {
+            "skill": "c++",
+            "resources": [{
+                    "name": "C++ Reference",
+                    "link": "https://en.cppreference.com/w/",
+                    "description": "A comprehensive online reference for the C++ programming language."
+                },
+                {
+                    "name": "C++ Primer",
+                    "link": "https://www.oreilly.com/library/view/c-primer-5th/9780133053043/",
+                    "description": "A popular book for learning C++."
+                },
+                {
+                    "name": "The C++ Programming Language",
+                    "link": "https://www.stroustrup.com/4th.html",
+                    "description": "A book written by the creator of C++, Bjarne Stroustrup."
+                }
+            ]
+        },
+        {
+            "skill": "sql",
+            "resources": [{
+                    "name": "SQLZoo",
+                    "link": "https://sqlzoo.net/",
+                    "description": "Interactive SQL tutorials."
+                },
+                {
+                    "name": "W3Schools SQL Tutorial",
+                    "link": "https://www.w3schools.com/sql/",
+                    "description": "A beginner-friendly SQL tutorial."
+                },
+                {
+                    "name": "Khan Academy - Intro to SQL",
+                    "link": "https://www.khanacademy.org/computing/computer-programming/sql",
+                    "description": "Introductory SQL course."
+                }
+            ]
+        },
+        {
+            "skill": "html",
+            "resources": [{
+                    "name": "MDN Web Docs - HTML",
+                    "link": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                    "description": "Comprehensive documentation for HTML."
+                },
+                {
+                    "name": "W3Schools HTML Tutorial",
+                    "link": "https://www.w3schools.com/html/",
+                    "description": "A beginner-friendly HTML tutorial."
+                },
+                {
+                    "name": "HTML Dog",
+                    "link": "https://htmldog.com/",
+                    "description": "HTML tutorials for all levels."
+                }
+            ]
+        },
+        {
+            "skill": "css",
+            "resources": [{
+                    "name": "MDN Web Docs - CSS",
+                    "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+                    "description": "Comprehensive documentation for CSS."
+                },
+                {
+                    "name": "W3Schools CSS Tutorial",
+                    "link": "https://www.w3schools.com/css/",
+                    "description": "A beginner-friendly CSS tutorial."
+                },
+                {
+                    "name": "CSS-Tricks",
+                    "link": "https://css-tricks.com/",
+                    "description": "A website about all things CSS."
+                }
+            ]
+        },
+        {
+            "skill": "php",
+            "resources": [{
+                    "name": "PHP: The Right Way",
+                    "link": "https://phptherightway.com/",
+                    "description": "An easy-to-read, quick reference for PHP best practices."
+                },
+                {
+                    "name": "Official PHP Documentation",
+                    "link": "https://www.php.net/docs.php",
+                    "description": "The official documentation for PHP."
+                },
+                {
+                    "name": "W3Schools PHP Tutorial",
+                    "link": "https://www.w3schools.com/php/",
+                    "description": "A beginner-friendly PHP tutorial."
+                }
+            ]
+        },
+        {
+            "skill": "typescript",
+            "resources": [{
+                    "name": "TypeScript Official Documentation",
+                    "link": "https://www.typescriptlang.org/docs/",
+                    "description": "The official documentation for TypeScript."
+                },
+                {
+                    "name": "TypeScript Deep Dive",
+                    "link": "https://basarat.gitbook.io/typescript/",
+                    "description": "An online book about TypeScript."
+                },
+                {
+                    "name": "Exercism - TypeScript Track",
+                    "link": "https://exercism.org/tracks/typescript",
+                    "description": "Practice TypeScript through coding exercises."
+                }
+            ]
+        },
+        {
+            "skill": "ruby",
+            "resources": [{
+                    "name": "Ruby Official Documentation",
+                    "link": "https://www.ruby-lang.org/en/documentation/",
+                    "description": "The official documentation for Ruby."
+                },
+                {
+                    "name": "Learn Ruby the Hard Way",
+                    "link": "https://learnrubythehardway.org/book/",
+                    "description": "A book that teaches Ruby through exercises."
+                },
+                {
+                    "name": "Ruby on Rails Guides",
+                    "link": "https://guides.rubyonrails.org/",
+                    "description": "Guides for Ruby on Rails, a popular web framework."
+                }
+            ]
+        },
+        {
+            "skill": "swift",
+            "resources": [{
+                    "name": "Swift Official Documentation",
+                    "link": "https://docs.swift.org/swift-book/",
+                    "description": "The official documentation for Swift."
+                },
+                {
+                    "name": "Hacking with Swift",
+                    "link": "https://www.hackingwithswift.com/",
+                    "description": "Learn to code iPhone and iPad apps with free Swift tutorials."
+                },
+                {
+                    "name": "Swift Playgrounds",
+                    "link": "https://www.apple.com/swift/playgrounds/",
+                    "description": "An app from Apple for learning Swift interactively."
+                }
+            ]
+        },
+        {
+            "skill": "kotlin",
+            "resources": [{
+                    "name": "Kotlin Official Documentation",
+                    "link": "https://kotlinlang.org/docs/home.html",
+                    "description": "The official documentation for Kotlin."
+                },
+                {
+                    "name": "Kotlin Koans",
+                    "link": "https://play.kotlinlang.org/koans/overview",
+                    "description": "A series of exercises to get you familiar with the Kotlin syntax."
+                },
+                {
+                    "name": "Head First Kotlin",
+                    "link": "https://www.oreilly.com/library/view/head-first-kotlin/9781491996683/",
+                    "description": "A brain-friendly guide to learning Kotlin."
+                }
+            ]
+        },
+        {
+            "skill": "go",
+            "resources": [{
+                    "name": "Go Official Documentation",
+                    "link": "https://go.dev/doc/",
+                    "description": "The official documentation for Go."
+                },
+                {
+                    "name": "A Tour of Go",
+                    "link": "https://go.dev/tour/welcome/1",
+                    "description": "An interactive introduction to Go."
+                },
+                {
+                    "name": "Effective Go",
+                    "link": "https://go.dev/doc/effective_go",
+                    "description": "Tips for writing clear, idiomatic Go code."
+                }
+            ]
+        },
+        {
+            "skill": "rust",
+            "resources": [{
+                    "name": "The Rust Programming Language",
+                    "link": "https://doc.rust-lang.org/book/",
+                    "description": "The official book on the Rust programming language."
+                },
+                {
+                    "name": "Rust by Example",
+                    "link": "https://doc.rust-lang.org/rust-by-example/",
+                    "description": "A collection of runnable examples that illustrate various Rust concepts."
+                },
+                {
+                    "name": "Rustlings",
+                    "link": "https://github.com/rust-lang/rustlings",
+                    "description": "Small exercises to get you used to reading and writing Rust code."
+                }
+            ]
+        },
+        {
+            "skill": "r",
+            "resources": [{
+                    "name": "R for Data Science",
+                    "link": "https://r4ds.had.co.nz/",
+                    "description": "A book that teaches you how to do data science with R."
+                },
+                {
+                    "name": "CRAN Task View",
+                    "link": "https://cran.r-project.org/web/views/",
+                    "description": "Guides to R packages organized by topic."
+                },
+                {
+                    "name": "Swirl",
+                    "link": "https://swirlstats.com/",
+                    "description": "An R package that teaches you R programming interactively."
+                }
+            ]
+        },
+        {
+            "skill": "c",
+            "resources": [{
+                    "name": "The C Programming Language",
+                    "link": "https://en.wikipedia.org/wiki/The_C_Programming_Language",
+                    "description": "A classic book on the C programming language, often referred to as K&R C."
+                },
+                {
+                    "name": "C Programming Tutorial",
+                    "link": "https://www.tutorialspoint.com/cprogramming/index.htm",
+                    "description": "A beginner-friendly C programming tutorial."
+                },
+                {
+                    "name": "Learn-C.org",
+                    "link": "https://www.learn-c.org/",
+                    "description": "Interactive C tutorial."
+                }
+            ]
+        },
+        {
+            "skill": "perl",
+            "resources": [{
+                    "name": "Perl Official Documentation",
+                    "link": "https://perldoc.perl.org/",
+                    "description": "The official documentation for Perl."
+                },
+                {
+                    "name": "Learn Perl",
+                    "link": "https://www.learn-perl.org/",
+                    "description": "Interactive Perl tutorial."
+                },
+                {
+                    "name": "Modern Perl",
+                    "link": "http://modernperlbooks.com/books/modern_perl_2014/index.html",
+                    "description": "A book that introduces the concepts of modern Perl programming."
+                }
+            ]
+        },
+        {
+            "skill": "scala",
+            "resources": [{
+                    "name": "Scala Official Documentation",
+                    "link": "https://docs.scala-lang.org/",
+                    "description": "The official documentation for Scala."
+                },
+                {
+                    "name": "Scala Exercises",
+                    "link": "https://www.scala-exercises.org/",
+                    "description": "Exercises for the Stdlib, Cats, Shapeless and many other great libraries."
+                },
+                {
+                    "name": "Programming in Scala",
+                    "link": "https://www.artima.com/shop/programming_in_scala_4ed",
+                    "description": "A comprehensive book on Scala."
+                }
+            ]
+        },
+        {
+            "skill": "matlab",
+            "resources": [{
+                    "name": "MATLAB Documentation",
+                    "link": "https://www.mathworks.com/help/matlab/",
+                    "description": "Official documentation from MathWorks."
+                },
+                {
+                    "name": "MATLAB Academy",
+                    "link": "https://matlabacademy.mathworks.com/",
+                    "description": "Online courses and tutorials."
+                },
+                {
+                    "name": "MATLAB Central",
+                    "link": "https://www.mathworks.com/matlabcentral/",
+                    "description": "Community resources, file exchange, and more."
+                }
+            ]
+        },
+        {
+            "skill": "shell scripting",
+            "resources": [{
+                    "name": "Bash Guide for Beginners",
+                    "link": "https://www.tldp.org/LDP/Bash-Beginners-Guide/html/",
+                    "description": "A guide to learning Bash scripting."
+                },
+                {
+                    "name": "Advanced Bash-Scripting Guide",
+                    "link": "https://www.tldp.org/LDP/abs/html/",
+                    "description": "An in-depth exploration of the art of shell scripting."
+                },
+                {
+                    "name": "Shell Scripting Tutorial",
+                    "link": "https://www.shellscript.sh/",
+                    "description": "A website dedicated to teaching shell scripting."
+                }
+            ]
+        },
+        {
+            "skill": "bash",
+            "resources": [{
+                    "name": "Bash Guide for Beginners",
+                    "link": "https://www.tldp.org/LDP/Bash-Beginners-Guide/html/",
+                    "description": "A guide to learning Bash scripting."
+                },
+                {
+                    "name": "Advanced Bash-Scripting Guide",
+                    "link": "https://www.tldp.org/LDP/abs/html/",
+                    "description": "An in-depth exploration of the art of shell scripting."
+                },
+                {
+                    "name": "Bash Reference Manual",
+                    "link": "https://www.gnu.org/software/bash/manual/bash.html",
+                    "description": "The official reference manual for Bash."
+                }
+            ]
+        },
+        {
+            "skill": "powershell",
+            "resources": [{
+                    "name": "PowerShell Documentation",
+                    "link": "https://docs.microsoft.com/en-us/powershell/",
+                    "description": "Official PowerShell documentation from Microsoft."
+                },
+                {
+                    "name": "Learn PowerShell | Microsoft Learn",
+                    "link": "https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction",
+                    "description": "A series of articles on Microsoft Learn."
+                },
+                {
+                    "name": "Hey, Scripting Guy! Blog",
+                    "link": "https://devblogs.microsoft.com/scripting/",
+                    "description": "Blog posts and articles about PowerShell."
+                }
+            ]
+        },
+        {
+            "skill": "vba",
+            "resources": [{
+                    "name": "VBA Documentation",
+                    "link": "https://docs.microsoft.com/en-us/office/vba/api/overview/",
+                    "description": "Official VBA documentation from Microsoft."
+                },
+                {
+                    "name": "Excel Easy - VBA Tutorial",
+                    "link": "https://www.excel-easy.com/vba.html",
+                    "description": "A beginner-friendly VBA tutorial for Excel."
+                },
+                {
+                    "name": "Chandoo.org - VBA",
+                    "link": "https://chandoo.org/wp/excel-vba/",
+                    "description": "VBA articles and tutorials."
+                }
+            ]
+        },
+        {
+            "skill": "groovy",
+            "resources": [{
+                    "name": "Groovy Documentation",
+                    "link": "https://groovy-lang.org/documentation.html",
+                    "description": "Official Groovy documentation."
+                },
+                {
+                    "name": "Groovy in Action",
+                    "link": "https://www.manning.com/books/groovy-in-action-second-edition",
+                    "description": "A comprehensive guide to the Groovy language."
+                },
+                {
+                    "name": "Grails Documentation",
+                    "link": "https://docs.grails.org/latest/guide/index.html",
+                    "description": "Documentation for Grails, a web framework built with Groovy."
+                }
+            ]
+        },
+        {
+            "skill": "objective-c",
+            "resources": [{
+                    "name": "Objective-C Programming: The Big Nerd Ranch Guide",
+                    "link": "https://www.bignerdranch.com/books/objective-c-programming-the-big-nerd-ranch-guide-2nd/",
+                    "description": "A book for learning Objective-C."
+                },
+                {
+                    "name": "Apple Developer Documentation - Objective-C",
+                    "link": "https://developer.apple.com/documentation/objectivec",
+                    "description": "Official Objective-C documentation from Apple."
+                },
+                {
+                    "name": "Cocoa Programming for OS X: The Big Nerd Ranch Guide",
+                    "link": "https://www.bignerdranch.com/books/cocoa-programming-for-os-x-5th/",
+                    "description": "A book for learning Cocoa framework with Objective-C."
+                }
+            ]
+        },
+        {
+            "skill": "dart",
+            "resources": [{
+                    "name": "Dart Documentation",
+                    "link": "https://dart.dev/guides",
+                    "description": "Official Dart documentation."
+                },
+                {
+                    "name": "Dart Tutorials",
+                    "link": "https://dart.dev/tutorials",
+                    "description": "Tutorials for learning Dart."
+                },
+                {
+                    "name": "Flutter Documentation",
+                    "link": "https://docs.flutter.dev/",
+                    "description": "Documentation for Flutter, a UI toolkit built with Dart."
+                }
+            ]
+        },
+        {
+            "skill": "lua",
+            "resources": [{
+                    "name": "Lua Official Documentation",
+                    "link": "https://www.lua.org/docs.html",
+                    "description": "Official Lua documentation."
+                },
+                {
+                    "name": "Programming in Lua",
+                    "link": "https://www.lua.org/pil/",
+                    "description": "The official book about the Lua language."
+                },
+                {
+                    "name": "Lua Tutorial",
+                    "link": "https://www.tutorialspoint.com/lua/index.htm",
+                    "description": "A beginner-friendly Lua tutorial."
+                }
+            ]
+        },
+        {
+            "skill": "assembly language",
+            "resources": [{
+                    "name": "Introduction to Assembly Language Programming",
+                    "link": "https://www.udemy.com/course/introduction-to-assembly-language-programming/",
+                    "description": "Introduction to the key concepts of programming hardware directly"
+                },
+                {
+                    "name": "Art of Assembly Language",
+                    "link": "http://www.plantation-productions.com/Webster/www.artofasm.com/index.html",
+                    "description": "Covers various aspects of assembly language programming"
+                },
+                {
+                    "name": "NASM Assembly Language Tutorials",
+                    "link": "https://asmtutor.com/",
+                    "description": "Tutorials on x86 assembly language using NASM"
+                }
+            ]
+        },
+        {
+            "skill": "haskell",
+            "resources": [{
+                    "name": "Learn You a Haskell for Great Good!",
+                    "link": "http://learnyouahaskell.com/",
+                    "description": "A beginner-friendly guide to learning Haskell."
+                },
+                {
+                    "name": "Haskell Official Documentation",
+                    "link": "https://www.haskell.org/documentation/",
+                    "description": "Official Haskell documentation."
+                },
+                {
+                    "name": "Real World Haskell",
+                    "link": "http://book.realworldhaskell.org/",
+                    "description": "A book that teaches how to use Haskell in practical contexts."
+                }
+            ]
+        },
+        {
+            "skill": "f#",
+            "resources": [{
+                    "name": "F# Documentation",
+                    "link": "https://docs.microsoft.com/en-us/dotnet/fsharp/",
+                    "description": "Official F# documentation from Microsoft."
+                },
+                {
+                    "name": "F# for Fun and Profit",
+                    "link": "https://fsharpforfunandprofit.com/",
+                    "description": "A website dedicated to teaching F#."
+                },
+                {
+                    "name": "Expert F# 4.0",
+                    "link": "https://www.apress.com/gp/book/9781484207413",
+                    "description": "A book that covers F# in depth."
+                }
+            ]
+        },
+        {
+            "skill": "julia",
+            "resources": [{
+                    "name": "Julia Official Documentation",
+                    "link": "https://docs.julialang.org/en/v1/",
+                    "description": "Official Julia documentation."
+                },
+                {
+                    "name": "Think Julia",
+                    "link": "https://benlauwens.github.io/ThinkJulia.jl/latest/book.html",
+                    "description": "An introduction to Julia for programmers."
+                },
+                {
+                    "name": "JuliaAcademy",
+                    "link": "https://juliaacademy.com/",
+                    "description": "Free and paid courses on Julia programming."
+                }
+            ]
+        },
+        {
+            "skill": "elixir",
+            "resources": [{
+                    "name": "Elixir Official Documentation",
+                    "link": "https://elixir-lang.org/docs.html",
+                    "description": "Official Elixir documentation."
+                },
+                {
+                    "name": "Programming Elixir",
+                    "link": "https://pragprog.com/titles/elixir16/programming-elixir-1-6/",
+                    "description": "A book that provides a comprehensive introduction to Elixir."
+                },
+                {
+                    "name": "Elixir School",
+                    "link": "https://elixirschool.com/en/",
+                    "description": "A collection of Elixir lessons."
+                }
+            ]
+        },
+        {
+            "skill": "clojure",
+            "resources": [{
+                    "name": "Clojure Official Documentation",
+                    "link": "https://clojure.org/guides/getting_started",
+                    "description": "Official Clojure documentation."
+                },
+                {
+                    "name": "Clojure for the Brave and True",
+                    "link": "https://www.braveclojure.com/",
+                    "description": "A beginner-friendly book for learning Clojure."
+                },
+                {
+                    "name": "Clojure Distilled",
+                    "link": "https://www.clojure-distilled.com/",
+                    "description": "A guide to the main concepts of Clojure."
+                }
+            ]
+        },
+        {
+            "skill": "erlang",
+            "resources": [{
+                    "name": "Erlang Official Documentation",
+                    "link": "https://www.erlang.org/docs",
+                    "description": "Official Erlang documentation."
+                },
+                {
+                    "name": "Learn You Some Erlang for Great Good!",
+                    "link": "http://learnyousomeerlang.com/",
+                    "description": "A beginner-friendly guide to learning Erlang."
+                },
+                {
+                    "name": "Programming Erlang: Software for a Concurrent World",
+                    "link": "https://pragprog.com/titles/jaerlang2/programming-erlang-2nd-edition/",
+                    "description": "A book written by Joe Armstrong, one of the creators of Erlang."
+                }
+            ]
+        },
+        {
+            "skill": "cobol",
+            "resources": [{
+                    "name": "COBOL Programming Language",
+                    "link": "https://www.ibm.com/docs/en/cobol-zos/6.4?topic=cobol-programming-language",
+                    "description": "Official IBM COBOL documentation."
+                },
+                {
+                    "name": "Murach's Mainframe COBOL",
+                    "link": "https://www.murach.com/shop/murach-s-mainframe-cobol-detail",
+                    "description": "A book that teaches COBOL programming for mainframes."
+                },
+                {
+                    "name": "COBOL Tutorial",
+                    "link": "https://www.tutorialspoint.com/cobol/index.htm",
+                    "description": "A beginner-friendly COBOL tutorial."
+                }
+            ]
+        },
+        {
+            "skill": "fortran",
+            "resources": [{
+                    "name": "Fortran Wiki",
+                    "link": "https://fortran-lang.org/learn/",
+                    "description": "A wiki dedicated to the Fortran programming language."
+                },
+                {
+                    "name": "Introduction to Programming with Fortran",
+                    "link": "https://www.springer.com/gp/book/9783319785997",
+                    "description": "A book that teaches Fortran programming."
+                },
+                {
+                    "name": "Fortran Standard Library",
+                    "link": "https://stdlib.fortran-lang.org/",
+                    "description": "The official Fortran standard library."
+                }
+            ]
+        }
+    ]
+}

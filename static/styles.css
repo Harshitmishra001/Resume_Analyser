@@ -17,246 +17,465 @@ html {
 
 /* Header Section */
 
+
+/* General Styling for Header */
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: linear-gradient(#4A90E2, #E94E77);
-    /* Gradient with primary and secondary colors */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border-bottom: 3px solid #000000;
+    padding: 50px;
+    background: linear-gradient(135deg, #2D3E50, #4F7B96);
+    /* Added angle for a dynamic feel */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    /* Softened the shadow for a more modern look */
+    border-radius: 15px;
+    /* Rounded corners for a softer look */
+    border-bottom: 5px solid #1F2A35;
+    /* Darker bottom border for added depth */
+    overflow: hidden;
+}
+
+
+/* Text Container Styling */
+
+.text-container {
+    max-width: 50%;
+    color: #FFFF
 }
 
 .header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3.5rem;
+    /* Increased font size for better emphasis */
     color: #FFFFFF;
-    /* Contrast text */
+    font-family: 'Helvetica Neue', sans-serif;
+    /* Sleek font */
+    font-weight: 700;
+    /* Bold weight for impact */
+    line-height: 1.4;
+    letter-spacing: 1px
 }
 
-.header img {
-    width: 280px;
+.intro-text {
+    font-size: 1.3rem;
+    color: #E1E8F0;
+    line-height: 1.7;
+    margin-top: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+
+/* Image Container Styling */
+
+.image-container img {
+    max-width: 45%;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    object-fit: cover;
+    /* Ensures image fits nicely */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 
-/* Navigation Buttons */
+/* Responsive Design */
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text-container {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+    .image-container img {
+        max-width: 80%;
+    }
+}
+
+
+/* Navigation Buttons Styling */
 
 .navigation-buttons {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px;
+    font-family: 'Helvetica Neue', sans-serif;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .button-container button {
-    background-color: #4A90E2;
-    /* Primary color */
+    background-color: #2D3E50;
+    /* Dark blue to match the header theme */
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    /* Bold buttons for emphasis */
+    letter-spacing: 1px;
+    /* Slight letter spacing for readability */
 }
 
 .button-container button:hover {
-    background-color: #E94E77;
-    /* Secondary color on hover */
-    transform: scale(1.05);
+    background-color: #4F7B96;
+    /* Lighter blue on hover */
+    transform: translateY(-4px);
+    /* Lift effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
 }
 
 .button-container button:active {
-    background-color: #F5A623;
-    /* Accent color on click */
+    background-color: #1F2A35;
+    /* Darker shade when clicked */
+    transform: translateY(0);
+    /* Reset transform on click */
+    box-shadow: none;
 }
 
 
-/* Content Sections */
+/* Review Section Styling */
 
-.content-section {
-    display: none;
-    margin: 30px 0;
-    padding: 20px;
-    background-color: #FFFFFF;
-    /* Clean white background */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px #E94E77(0, 0, 0, 0.1);
-}
-
-.content-section h2 {
+.reviews-section h2 {
     font-size: 2rem;
-    color: #E94E77;
+    color: #2D3E50;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
-.content-section button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    margin: 5px;
-    border-radius: 5px;
-    background-color: #4A90E2;
+.reviews-section #writeReviewBtn {
+    background-color: #4F7B96;
     color: white;
     border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+    margin-top: 20px;
 }
 
-.content-section button:hover {
-    background-color: #F5A623;
+.reviews-section #writeReviewBtn:hover {
+    background-color: #2D3E50;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reviews-section #writeReviewBtn:active {
+    background-color: #1F2A35;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.scrollable-reviews {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #F5F5F5;
+    /* Light grey background for the review section */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.review {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.review p {
+    color: #2D3E50;
+    font-size: 1rem;
+}
+
+
+/* Review Form Styling */
+
+#reviewFormSection {
+    background-color: #F5F5F5;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+#reviewInput {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    resize: vertical;
+}
+
+#submitReviewBtn {
+    background-color: #4F7B96;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#submitReviewBtn:hover {
+    background-color: #2D3E50;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#submitReviewBtn:active {
+    background-color: #1F2A35;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/* Responsive Design */
+
+@media screen and (max-width: 768px) {
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .scrollable-reviews {
+        max-height: 150px;
+    }
+}
+
+
+/* General Reset for Cleaner UI */
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.about-us {
+    background-color: #F5F5F5;
+    /* Subtle light background */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-us h3 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.about-us p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/* About Us Container */
+
+.about-us-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.column-box {
+    flex: 1;
+    background: linear-gradient(135deg, #4A90E2, #1F2A35);
+    color: #FFFFFF;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.column-box:hover {
+    transform: translateY(-8px);
+    /* Lift effect on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.column-box img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.column-box h3 {
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.column-box p {
+    color: #EDEDED;
+}
+
+
+/* Image and Text Box Styling */
+
+.image-text-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.image-text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-text-box:hover {
+    transform: scale(1.05);
+    /* Subtle zoom effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image-text-box img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.image-text-box h3 {
+    color: #2D3E50;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.image-text-box p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 
 /* Reviews Section */
 
-.reviews-section {
-    margin-top: 30px;
+.review-section {
+    margin: 40px 0;
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.reviews-section h2 {
-    font-size: 2rem;
-    color: #E94E77;
-}
-
-#writeReviewBtn {
-    margin-left: 20px;
-    padding: 10px 20px;
-    background-color: #4A90E2;
-    color: rgb(122, 13, 13);
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#writeReviewBtn:hover {
-    background-color: #020202;
-}
-
-
-/* Scrollable Reviews */
-
-.scrollable-reviews {
-    max-height: 200px;
-    overflow-y: scroll;
+.reviews-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
     margin-top: 20px;
-    background-color: #020202;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #5f1111;
 }
 
 .review {
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #E94E77;
-    border-radius: 5px;
-    border: 1px solid #E94E77;
+    background-color: #F5F5F5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    transition: transform 0.3s ease;
+}
+
+.review:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.review p {
+    font-style: italic;
+    color: #333;
+}
+
+.review span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #4A90E2;
 }
 
 
 /* Sponsors Section */
 
 .sponsors-section {
+    margin-top: 60px;
     text-align: center;
-    margin: 50px 0;
 }
 
 .sponsors-section h3 {
-    font-size: 1.8rem;
-    color: #E94E77;
     margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #2D3E50;
+}
+
+.sponsors-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .sponsors-container img {
-    width: 150px;
+    width: 120px;
     height: auto;
-    border: 1px solid #4A90E2;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .sponsors-container img:hover {
     transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 
-/* About Us Section */
+/* Responsive Design */
 
-.about-us-container {
-    display: flex;
-    justify-content: space-around;
-    gap: 2%;
-    padding: 30px;
-}
-
-.column-box {
-    width: 45%;
-    background-color: #E94E77;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 4px 8px #E94E77(0, 0, 0, 0.1);
-}
-
-.column-box img {
-    width: 100px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.column-box h3 {
-    font-size: 1.5rem;
-    margin-top: 15px;
-    color: #000000;
-}
-
-.column-box p {
-    font-size: 1rem;
-    color: #000000;
-}
-
-
-/* Chat Container */
-
-.chat-container {
-    position: absolute;
-    top: 100;
-    /* Initially positioned at the top */
-    left: 80%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.5s ease;
-    /* Smooth movement */
-    animation: idle 2s infinite alternate;
-    /* Subtle idle animation */
-}
-
-
-/* Idle Animation */
-
-@keyframes idle {
-    0% {
-        transform: translate(-50%, -50%) translateY(-5px);
+@media (max-width: 768px) {
+    .about-us-container,
+    .image-text-container,
+    .reviews-container {
+        flex-direction: column;
+        align-items: center;
     }
-    100% {
-        transform: translate(-50%, -50%) translateY(5px);
+    .column-box,
+    .review {
+        width: 90%;
+    }
+    .sponsors-container img {
+        width: 80px;
     }
 }
 
@@ -411,54 +630,208 @@ button:hover {
 }
 
 
-/* Resume Upload Section */
+/* Resume Upload Section*/
+
+
+/* Resume Upload Section Styling */
 
 .resume-upload {
-    padding: 40px;
-    background: linear-gradient(to bottom, #4A90E2, #E94E77);
+    padding: 50px;
+    background: linear-gradient(to bottom, #4A90E2, #4E92CC);
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
     margin: 50px auto;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+    font-family: 'Arial', sans-serif;
+}
+
+.resume-upload h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.resume-upload form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.resume-upload input[type="file"] {
+    display: none;
+}
+
+.resume-upload label {
+    background-color: #E94E77;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.resume-upload label:hover {
+    background-color: #F5A623;
+    transform: scale(1.05);
+}
+
+.resume-upload input[type="text"] {
     width: 80%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    padding: 10px;
+    border: 2px solid #E94E77;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .resume-upload button {
-    background-color: #E94E77;
+    background-color: #4A90E2;
     color: white;
+    padding: 12px 25px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .resume-upload button:hover {
-    background-color: #F5A623;
+    background-color: #2D5AA7;
+    transform: translateY(-2px);
+}
+
+.resume-upload button:active {
+    background-color: #193A62;
+    transform: scale(0.98);
+}
+
+
+/* Resume Output Section */
+
+#resumeOutput {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 1rem;
+    display: none;
+    /* Initially hidden */
+}
+
+#resumeOutput.visible {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+/* Fade In Animation */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 
 /* Contact Us Section */
 
 .contact-us {
-    background-color: #4A90E2;
-    padding: 40px 20px;
+    background: linear-gradient(to bottom, #2D3E50, #1F2A35);
+    /* Matches gradient theme */
+    padding: 50px;
     text-align: center;
     color: #FFFFFF;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
 }
 
 .contact-us h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #E94E77;
+    /* Golden Yellow for contrast */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.contact-us a {
+.contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+.contact-icon {
+    font-size: 2.5rem;
     color: #F5A623;
+    /* Matches accent color for uniformity */
+    animation: pulse 2s infinite;
+    /* Subtle animation for icons */
+}
+
+.contact-item p {
+    margin: 0;
+    font-size: 1.2rem;
+    COLOR: #d8d8d8
+}
+
+.contact-item a {
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.contact-us a:hover {
+.contact-item a:hover {
+    color: #F5A623;
+    /* Highlight link on hover */
     text-decoration: underline;
+    transform: scale(1.05);
+}
+
+
+/* Pulse Animation */
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
 }
 
 * {
@@ -484,7 +857,7 @@ html {
 }
 
 .chatbox {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
 }

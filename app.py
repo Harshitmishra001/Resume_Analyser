@@ -9,7 +9,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 import io
 from chat import get_response
-
+import json
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
 
@@ -91,6 +91,30 @@ def suggest_skills(resume_skills, job_skills):
         return "No additional skills are needed! Your resume matches the job requirements well."
     return f"Consider adding these skills to your resume: {', '.join(missing_skills)}"
 
+def prepare_missing_skills(resume_skills, job_skills):
+    # Load skill-resource mapping from skills.json
+    with open("skills.json", "r") as f:
+        skills = json.load(f)
+
+    missing_skills = set(job_skills) - set(resume_skills)
+    recommendations = []
+
+    # Find resources for each missing skill
+    for skill in missing_skills:
+        for skill_entry in skills['skills']:
+            if skill_entry['skill'] == skill:
+                resource = skill_entry['resources'][0].get('link', 'No resources available')  # Get the first resource link
+                recommendations.append(f"{skill} : {resource}")  # Format as 'skill : <link>'
+
+    # Prepare data for HTML
+    if not recommendations:
+        return {"message": "Your resume matches the job requirements perfectly!"}
+    
+    return {"recommendations": recommendations}
+
+
+
+
 # Function to visualize skill match
 def plot_skill_match(resume_skills, job_skills):
     common_skills = set(resume_skills).intersection(set(job_skills))
@@ -133,11 +157,11 @@ def index():
             match_percentage = calculate_weighted_match_percentage(resume_skills, job_skills)
 
             # Skill suggestions and visualization
-            additional_skills = suggest_skills(resume_skills, job_skills)
+            additional_skills = prepare_missing_skills(resume_skills, job_skills)
             plot_image = plot_skill_match(resume_skills, job_skills)
 
             return render_template('results.html', match_percentage=match_percentage, resume_skills=resume_skills,
-                                job_skills=job_skills, additional_skills=additional_skills, plot_image=plot_image)
+                                job_skills=job_skills, additional_skills=additional_skills["recommendations"], plot_image=plot_image)
 
     return render_template('index.html')
 

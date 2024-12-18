@@ -10,17 +10,29 @@
 
 <body>
     <!-- Header Section -->
-    <header class="header">
+    <!--<header class="header">
         <div>
+            <h1>Effortlessly creates Stunning Resumes</h1>
+            <p class="intro-text">
+                The ATS Resume Website is an intuitive, user-friendly platform designed to help individuals create stunning, professional resumes effortlessly. By leveraging AI and optimized design, the platform ensures each resume is tailored for the modern job market,
+                increasing your chances of passing through Applicant Tracking Systems (ATS) successfully.
+            </p>
+        </div>
+        <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 112104.png') }}" alt="Illustration showcasing resume generation" /> 
+    </header> -->
+    <header class="header">
+        <div class="text-container">
             <h1>Effortlessly Create Stunning Resumes</h1>
             <p class="intro-text">
                 The ATS Resume Website is an intuitive, user-friendly platform designed to help individuals create stunning, professional resumes effortlessly. By leveraging AI and optimized design, the platform ensures each resume is tailored for the modern job market,
                 increasing your chances of passing through Applicant Tracking Systems (ATS) successfully.
             </p>
         </div>
-        <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 112104.png') }}" alt="Illustration showcasing resume generation" />
-        <!-- Rightmost Image -->
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/Screenshot 2024-12-08 112104.png') }}" alt="Illustration showcasing resume generation" />
+        </div>
     </header>
+
     <!-- Navigation Buttons Section -->
     <section class="navigation-buttons">
         <div class="button-container">
@@ -31,12 +43,44 @@
             <button id="resumeExamplesButton">Resume Examples</button>
         </div>
         <!-- Reviews Section -->
+        <!-- <section class="reviews-section">
+        <h2>Reviews</h2>
+        <button id="writeReviewBtn">Write a Review</button>
+        <div id="reviewsContainer" class="scrollable-reviews">
+            <div class="review">
+                <p><strong>John Doe:</strong> "Great platform! It helped me create a perfect resume!"</p>
+            </div>
+            <div class="review">
+                <p><strong>Jane Smith:</strong> "Easy to use and effective. Highly recommend!"</p>
+            </div>
+        </div>
+    </section> -->
+
+        <!-- Review Form (Hidden by Default) -->
+        <section id="reviewFormSection" class="hidden">
+            <h3>Write a Review</h3>
+            <textarea id="reviewInput" placeholder="Write your review here..." rows="4" cols="50"></textarea><br>
+            <button id="submitReviewBtn">Submit Review</button>
+        </section>
+    </section>
+
+
+    <!-- Navigation Buttons Section -->
+    <!-- <section class="navigation-buttons">
+        <div class="button-container">
+            <button id="resourcesButton">Resources</button>
+            <button id="faqsButton">FAQs</button>
+            <button id="coverLettersButton">Cover Letters</button>
+            <button id="resumeTemplatesButton">Resume Templates</button>
+            <button id="resumeExamplesButton">Resume Examples</button>
+        </div>
+         Reviews Section 
         <section class="reviews-section">
             <h2>Reviews</h2>
-            <!-- Review Button to Open Review Form -->
+             Review Button to Open Review Form 
             <button id="writeReviewBtn">Write a Review</button>
             <div id="reviewsContainer" class="scrollable-reviews">
-                <!-- Example reviews (these will be added dynamically) -->
+                 Example reviews (these will be added dynamically) 
                 <div class="review">
                     <p><strong>John Doe:</strong> "Great platform! It helped me create a perfect resume!"</p>
                 </div>
@@ -46,19 +90,19 @@
             </div>
         </section>
 
-        <!-- Review Form (Hidden by Default) -->
+        Review Form (Hidden by Default) 
         <section id="reviewFormSection" class="hidden">
             <h3>Write a Review</h3>
             <textarea id="reviewInput" placeholder="Write your review here..." rows="4" cols="50"></textarea><br>
             <button id="submitReviewBtn">Submit Review</button>
         </section>
 
-    </section>
+    </section>-->
     <!-- Sections for content -->
-    <section id="applyTemplateSection" class="content-section hidden">
+    <!--<section id="applyTemplateSection" class="content-section hidden">
         <h2>Apply Template</h2>
         <p>Select and apply a professional resume template:</p>
-        <!-- Example templates listed -->
+         Example templates listed 
         <div class="template-options">
             <button>Template 1</button>
             <button>Template 2</button>
@@ -78,7 +122,7 @@
     <section id="templatesSection" class="content-section hidden">
         <h2>Resume Templates</h2>
         <p>Choose from a variety of professionally designed resume templates:</p>
-        <!-- Example templates list -->
+        Example templates list 
         <div class="template-gallery">
             <button>Template 1</button>
             <button>Template 2</button>
@@ -89,13 +133,13 @@
     <section id="coverLettersSection" class="content-section hidden">
         <h2>Resume Covers</h2>
         <p>Select a cover letter template to complement your resume:</p>
-        <!-- Example cover letters -->
+        Example cover letters 
         <div class="cover-letter-gallery">
             <button>Cover Letter 1</button>
             <button>Cover Letter 2</button>
             <button>Cover Letter 3</button>
         </div>
-    </section>
+    </section>-->
 
 
     <!-- H2 Section -->
@@ -194,36 +238,51 @@
                 </div>
             </div>
             <div class="chatbox__button">
-                <button><img src="./images/chatbox-icon.svg" /></button>
+                <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
             </div>
         </div>
     </div>
 
 
-
-    <!-- Resume Upload Section -->
     <!-- Resume Upload Section -->
     <section class="resume-upload">
         <h2>Generate Your Resume Instantly</h2>
         <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+            <!-- File Upload -->
+            <label for="resumeFile">Upload Your Resume (PDF)</label>
             <input type="file" id="resumeFile" name="resumeFile" accept=".pdf" required />
-            <button type="submit">Upload & Generate</button>
+
+            <!-- Job Description Input -->
             <div>
                 <input type="text" name="job_description" placeholder="Enter Job Description" required />
             </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Upload & Generate</button>
         </form>
+
+        <!-- AI-Generated Resume Output -->
         <div id="resumeOutput">
-            <!-- AI-generated resume details will appear here -->
+            <!-- Example Placeholder Text -->
+            <p>Your AI-generated resume details will appear here.</p>
         </div>
     </section>
-
 
     <!-- Contact Us Section -->
     <section class="contact-us">
         <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:support@resumegenerator.com">support@resumegenerator.com</a></p>
-        <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fa fa-envelope contact-icon"></i>
+                <p>Email: <a href="mailto:support@resumegenerator.com">support@resumegenerator.com</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fa fa-phone contact-icon"></i>
+                <p>Phone: <a href="tel:+1234567890">+123-456-7890</a></p>
+            </div>
+        </div>
     </section>
+
     <!-- <script>
         // Define SCRIPT_ROOT using Jinja2 to get the script root
         // var SCRIPT_ROOT = {
